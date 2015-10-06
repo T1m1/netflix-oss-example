@@ -29,19 +29,27 @@
 3. Objekt Model erstellen - mit Hilfe von ProjectLomboc
 	```
 	@Data
-	public class User {
+	public class User {		
 		private String userId;
 		private String lastname;
 		private String firstname;
+		
+		public User(String firstname, String lastname) {
+			this.userId = UUID.randomUUID().toString();
+			this.firstname = firstname;
+			this.lastname = lastname;
+		}
 	}
 	```
 
 2. Rest-Controller erstellen mit Gemockter Funktionalität
-		```
-	@SpringBootApplication
-	public class UserServiceApplication {
-	    public static void main(String[] args) {
-	        SpringApplication.run(UserServiceApplication.class, args);
+	```
+	@RestController
+	public class UserService {
+		@RequestMapping("/users/{userId}")
+	    public User getProduct(@PathVariable String productId) {		
+	        return new User(productId, "Max", "Mustermann");
 	    }
+	
 	}
 	```
