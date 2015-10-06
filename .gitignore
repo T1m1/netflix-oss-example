@@ -4,3 +4,13 @@
 *.jar
 *.war
 *.ear
+
+# SBT files #
+.settings
+.classpath
+.project
+.metadata
+servers
+
+# Spring files #
+**/.springBeans
