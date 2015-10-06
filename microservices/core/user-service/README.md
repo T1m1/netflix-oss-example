@@ -2,7 +2,8 @@
 - Benutzerverwaltung
 
 ## Verwaltung
-- Starten: ``` mvn spring-boot:run```
+- Starten: ``` mvn spring-boot:run``` oder ```start.bat```
+
 
 
 ## Implementierung
