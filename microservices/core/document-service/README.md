@@ -1,7 +1,7 @@
 # Dokumenten Service
 - Dokumentenverwaltung
 
-## Allgemeines
+## Übersicht
 - Starten: ``` mvn spring-boot:run``` oder ``` run.bat```
 
 
