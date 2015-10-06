@@ -1,6 +1,10 @@
 # User-Service
 - Benutzerverwaltung
 
+## Verwaltung
+- Starten: ``` mvn spring-boot:run```
+
+
 ## Implementierung
 
 1.  Microservice mit Spring Boot erstellen 
@@ -41,15 +45,23 @@
 		}
 	}
 	```
+	Dependency:
+	```
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.6</version>
+			<scope>provided</scope>
+		</dependency>
+	```
 
 2. Rest-Controller erstellen mit Gemockter Funktionalität
 	```
 	@RestController
 	public class UserService {
 		@RequestMapping("/users/{userId}")
-	    public User getProduct(@PathVariable String productId) {		
-	        return new User(productId, "Max", "Mustermann");
+	    public User getProduct(@PathVariable String userId) {		
+	        return new User(userId, "Max", "Mustermann");
 	    }
-	
 	}
 	```
