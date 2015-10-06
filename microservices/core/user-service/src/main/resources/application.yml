@@ -1,0 +1,3 @@
+# use any port - dynamic
+server:
+  port: 0
