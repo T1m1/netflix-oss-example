@@ -1,6 +1,10 @@
 # User-Service
 - Benutzerverwaltung
 
+## Verwaltung
+- Starten: ``` mvn spring-boot:run```
+
+
 ## Implementierung
 
 1.  Microservice mit Spring Boot erstellen 
