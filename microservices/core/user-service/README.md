@@ -55,7 +55,7 @@
 		</dependency>
 	```
 
-2. Rest-Controller erstellen mit Gemockter Funktionalität
+4. Rest-Controller erstellen mit Gemockter Funktionalität
 	```
 	@RestController
 	public class UserService {
@@ -64,4 +64,13 @@
 	        return new User(userId, "Max", "Mustermann");
 	    }
 	}
+	```
+	
+5. Port-Konfiguration -> für dynamische Portzuweisung
+	
+	application.yml
+
+	```
+	server:
+	  port: 0
 	```
