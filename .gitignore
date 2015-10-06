@@ -14,3 +14,8 @@ servers
 
 # Spring files #
 **/.springBeans
+
+.mvn
+mvnw
+mvnw.cmd
+bin
