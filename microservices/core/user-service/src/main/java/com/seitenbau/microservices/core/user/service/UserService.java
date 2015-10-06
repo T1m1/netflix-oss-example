@@ -8,6 +8,7 @@ import com.seitenbau.microservices.core.user.model.User;
 
 @RestController
 public class UserService {
+	
 	@RequestMapping("/users/{userId}")
     public User getUser(@PathVariable String userId) {		
         return new User(userId, "Max", "Mustermann");

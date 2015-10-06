@@ -8,6 +8,7 @@ import com.seitenbau.microservices.core.message.model.Message;
 
 @RestController
 public class MessageService {
+	
 	@RequestMapping("/messages/{messageId}")
     public Message getMessage(@PathVariable String messageId) {		
 		// TMP-MOCK
