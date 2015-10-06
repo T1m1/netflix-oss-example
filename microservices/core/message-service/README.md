@@ -1,5 +1,5 @@
-# Dokumenten Service
-- Dokumentenverwaltung
+# Message Service
+- Nachrichtenverwaltung
 
 ## Übersicht
 - Starten: ``` mvn spring-boot:run``` oder ``` run.bat```
