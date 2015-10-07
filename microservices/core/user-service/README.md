@@ -136,7 +136,7 @@
 			  instance:
 			    leaseRenewalIntervalInSeconds: 10
 			    metadataMap:
-			      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+			      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 		```	
 	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main). Wenn noch andere Discovery Clients eingesetzt werden, sollte **@EnableEurekaClient** verwendet werden.
 		```
