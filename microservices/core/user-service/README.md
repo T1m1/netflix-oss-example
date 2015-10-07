@@ -16,7 +16,12 @@
 		- Host+Port des Eureka-Servers
 	- *manifest.(yml,properties)* -> nicht eingesetzt
 		- Cloud Einstellungen	
-	
+- Eureka Client
+	- Wenn sich ein Klient am Eureka Server registriert übermittelt er Daten wie: host, port, homepage, health indicator URL etc
+	- Der Server empfängt "heartbeat"-Nachrichten von jeder instanz
+	- Wenn innerhalb eines Zeitfensters keine Nachricht mehr empfangen wird, wird die Instanz von der Registry entfernt
+	- Aktiviert werden kann der Klient mit *@EnableEurekaClient* oder wenn nur ein Eureka Server eingesetzt wird auch mit *@EnableDiscoveryClient*
+	- 
 
 ## Implementierung
 
@@ -112,16 +117,19 @@
 			    serviceUrl:
 			      defaultZone: http://127.0.0.1:8761/eureka/	
 		```
-	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern
+	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern + fallback wenn keine Einstellungen für die Eureka location angegeben sind
 	
 		```
 			eureka:
+			  client:
+			    serviceUrl:
+			      defaultZone: http://localhost:8761/eureka/
 			  instance:
 			    leaseRenewalIntervalInSeconds: 10
 			    metadataMap:
 			      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
 		```	
-	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main)
+	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main). Wenn noch andere Discovery Clients eingesetzt werden, sollte **@EnableEurekaClient** verwendet werden.
 		```
 			@SpringBootApplication
 			@EnableDiscoveryClient
