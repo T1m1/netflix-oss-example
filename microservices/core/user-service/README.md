@@ -95,3 +95,23 @@
 		  application:
 		    name: user-service	
 		```
+	2. *application.(yml,proerties)* - Eureka Server "position" festelgen
+	
+		```
+			eureka:
+			  client:
+			    serviceUrl:
+			      defaultZone: http://127.0.0.1:8761/eureka/	
+		```
+	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main)
+		```
+			@SpringBootApplication
+			@EnableDiscoveryClient
+			public class UserServiceApplication {
+			
+			    public static void main(String[] args) {
+			        SpringApplication.run(UserServiceApplication.class, args);
+			    }
+			}	
+		```
+		
