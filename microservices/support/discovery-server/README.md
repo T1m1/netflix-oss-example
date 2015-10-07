@@ -15,6 +15,11 @@ TODO:
 - Eureka kommt mit einer Java-basierenden Klient komponente, wodurch die Kommunikation mit dem Server vereinfacht wird
 - Einsatz von Eureka bei Netflix: **TODO**
 
+- Clients:
+	- Name der Klients wird als  ```spring.application.name``` property in der bootstrap Datei festgelegt
+	- ```org.springframework.cloud:spring-cloud-starter-eureka``` Dependency hinzufügen
+	- @EnableEurekaClient an die Klasse mit der main-Methode -> Verifizieren
+	
 ## Implementierung
 
 1. Spring Boot Template Application erstellen
@@ -39,14 +44,14 @@ TODO:
 	```
 3. Eureka-Server Konfigurieren
 	1. Port setzen + Instanz mitteilen, sich nicht bei sich selbst zu registrieren  	
-	```
-	server:
-	  port: ${PORT:8761}
-	  
-	 eureka:
-	  client:
-	    registerWithEureka: false
-	    fetchRegistry: false
-	    server:
-	      waitTimeInMsWhenSyncEmpty: 0
-	```
+		```
+		server:
+		  port: ${PORT:8761}
+		  
+		 eureka:
+		  client:
+		    registerWithEureka: false
+		    fetchRegistry: false
+		    server:
+		      waitTimeInMsWhenSyncEmpty: 0
+		```
