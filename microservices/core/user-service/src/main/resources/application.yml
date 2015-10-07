@@ -1,3 +1,10 @@
+## lokales Profil
+
 # use any port - dynamic
 server:
   port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
