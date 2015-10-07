@@ -28,6 +28,11 @@
 	- *@EnableEurekaClient* macht die Applikation zu einer Eureka "Instanz" die sich bei sich selbst registrieren kann und einen "Klient", der die Registry nach der Postion von anderen Services anfragen kann.
 	- Der spring.application.name in ist für den Service erforderlich
 	- Konfigurations-Optionen sind [hier - EurekaInstanceConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java) und [hier - EurekaClientConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaClientConfigBean.java) zu finden 
+	- Das registrieren einse Services ist langsam:
+		- default Einstellung für eine heartbeat Periode: 30 Sekunden
+		- Ein Service ist erst dann verfügbar, bis der Server & der Client die selbe metadata im lokalen cache halten -> das kann bis zu 3 hearbeat-Perioden dauern
+		- Die Periode kann angepasst werden -> eureka.instance.leaseRenewalIntervalInSeconds
+		- Im Produktivmodus sollte der default Wert verwendet werden -> da interne Berechnungen durchgeführt werden, die Annahmen über die Periode für die leases machen
 
 
 ## Implementierung
