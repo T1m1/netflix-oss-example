@@ -10,7 +10,6 @@
 - Der Eureka-Server kann als Spring-Boot Anwendung gestartet werden, das die Nutzung vereinfacht
 - Rest basierter Server der Primär in der Amazon Web Service (AWS) Cloud eingesetzt wird
 - Eureka kommt mit einer Java-basierenden Klient komponente, wodurch die Kommunikation mit dem Server vereinfacht wird
-- "Der Klient hat einen eingebauten Load-Balancer der Standardmäßig Round-Robni ausfführt" -> **TODO** überprüfen ob korrekt
 - Einsatz von Eureka bei Netflix: **TODO**
 
 ## Implementierung
