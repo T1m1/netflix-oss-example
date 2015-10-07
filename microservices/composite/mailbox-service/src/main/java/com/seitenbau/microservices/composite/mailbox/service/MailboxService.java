@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MailboxService {
 	
 	@RequestMapping("/mailboxes/{mailboxId}")
-    public String getUser(@PathVariable String userId) {		
+    public String getMailbox(@PathVariable String mailboxId) {		
       return null;
     }
 	
