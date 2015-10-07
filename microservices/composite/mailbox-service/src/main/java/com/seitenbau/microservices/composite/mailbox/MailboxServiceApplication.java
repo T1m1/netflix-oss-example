@@ -1,4 +1,4 @@
-package com.seitenbau.microservices.commposite.mailbox;
+package com.seitenbau.microservices.composite.mailbox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
