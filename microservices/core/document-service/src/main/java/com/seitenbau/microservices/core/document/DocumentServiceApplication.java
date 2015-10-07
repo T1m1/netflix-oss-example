@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MessageServiceApplication {
+public class DocumentServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MessageServiceApplication.class, args);
+        SpringApplication.run(DocumentServiceApplication.class, args);
     }
 }
