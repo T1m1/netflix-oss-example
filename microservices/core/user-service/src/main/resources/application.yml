@@ -1,10 +1,11 @@
-## lokales Profil
-
 # use any port - dynamic
 server:
   port: 0
 
+# 'leaseRenewalIntervalInSeconds' - beschleunigt den Prozess das ein Services sich beim Eureka anmeldet
+# 'instanceId' für die eindeutige identifizierung eines Services - Eureka Dashboard
 eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
