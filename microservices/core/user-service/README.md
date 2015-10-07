@@ -16,7 +16,7 @@
 		- Host+Port des Eureka-Servers
 	- *manifest.(yml,properties)* -> nicht eingesetzt
 		- Cloud Einstellungen	
-- Eureka Client
+- **Eureka Client**
 	- Wenn sich ein Klient am Eureka Server registriert übermittelt er Daten wie: host, port, homepage, health indicator URL etc
 	- Der Server empfängt "heartbeat"-Nachrichten von jeder instanz
 	- Wenn innerhalb eines Zeitfensters keine Nachricht mehr empfangen wird, wird die Instanz von der Registry entfernt
