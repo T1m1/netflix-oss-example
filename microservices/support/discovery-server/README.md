@@ -1,5 +1,8 @@
 # Discovery-Server Eureka
 
+TODO: 
+- Wie mehrere Instanzen des Eureka Servers aufsetzen / verwalten 
+
 ## Dokumentation
 - Service Registration Server (Endeckung, Feststellung, ..) -> Eureka Server
 - Führt Buch über die im Netzwerk verfügbaren Dienste
