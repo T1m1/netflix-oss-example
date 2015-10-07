@@ -4,6 +4,10 @@
 ## Verwaltung
 - Starten: ``` mvn spring-boot:run``` oder ```start.bat```
 
+## TODO
+- Datenbankanbindung
+- HealtCheck Methoden
+
 ## Dokumentation
 - Konfigurationsdateien
 	- *bootstrap.(yml,properties)*
@@ -16,7 +20,20 @@
 		- Host+Port des Eureka-Servers
 	- *manifest.(yml,properties)* -> nicht eingesetzt
 		- Cloud Einstellungen	
-	
+- **Eureka Client**
+	- Wenn sich ein Klient am Eureka Server registriert übermittelt er Daten wie: host, port, homepage, health indicator URL etc
+	- Der Server empfängt "heartbeat"-Nachrichten von jeder instanz
+	- Wenn innerhalb eines Zeitfensters keine Nachricht mehr empfangen wird, wird die Instanz von der Registry entfernt
+	- Aktiviert werden kann der Klient mit *@EnableEurekaClient* oder wenn nur ein Eureka Server eingesetzt wird auch mit *@EnableDiscoveryClient*
+	- *@EnableEurekaClient* macht die Applikation zu einer Eureka "Instanz" die sich bei sich selbst registrieren kann und einen "Klient", der die Registry nach der Postion von anderen Services anfragen kann.
+	- Der spring.application.name in ist für den Service erforderlich
+	- Konfigurations-Optionen sind [hier - EurekaInstanceConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java) und [hier - EurekaClientConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaClientConfigBean.java) zu finden 
+	- Das registrieren einse Services ist langsam:
+		- default Einstellung für eine heartbeat Periode: 30 Sekunden
+		- Ein Service ist erst dann verfügbar, bis der Server & der Client die selbe metadata im lokalen cache halten -> das kann bis zu 3 hearbeat-Perioden dauern
+		- Die Periode kann angepasst werden -> eureka.instance.leaseRenewalIntervalInSeconds
+		- Im Produktivmodus sollte der default Wert verwendet werden -> da interne Berechnungen durchgeführt werden, die Annahmen über die Periode für die leases machen
+
 
 ## Implementierung
 
@@ -112,16 +129,21 @@
 			    serviceUrl:
 			      defaultZone: http://127.0.0.1:8761/eureka/	
 		```
-	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern
+	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern (+ fallback wenn keine Einstellungen für die Eureka location angegeben sind), (+ eureka.client.healthcheck.enable=true)
 	
 		```
 			eureka:
+			  client:
+			    serviceUrl:
+			      defaultZone: http://localhost:8761/eureka/
+			    healthcheck:
+      			      enabled: true
 			  instance:
 			    leaseRenewalIntervalInSeconds: 10
 			    metadataMap:
-			      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+			      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 		```	
-	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main)
+	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main). Wenn noch andere Discovery Clients eingesetzt werden, sollte **@EnableEurekaClient** verwendet werden.
 		```
 			@SpringBootApplication
 			@EnableDiscoveryClient
