@@ -6,15 +6,15 @@
 
 ## Dokumentation
 - Konfigurationsdateien
-	- bootstrap.(yml,properties)
+	- *bootstrap.(yml,properties)*
 		- Wird vor der application.(yml,properties) Konfigurationsdatei aufgerufen.
 		- Beim Service-Startup 
 		- Enthält den Service Namen
 			- Dieser wird verwendet um sich beim Eureka-Server zu registrieren 
-	- application.(yml,properties)
+	- *application.(yml,properties)*
 		- Einsatz von verschiedener Spring-Profiles (Lokal, Cloud, Docker, ...)
 		- Host+Port des Eureka-Servers
-	- manifest.(yml,properties) -> nicht eingesetzt
+	- *manifest.(yml,properties)* -> nicht eingesetzt
 		- Cloud Einstellungen	
 	
 
@@ -87,5 +87,11 @@
 	server:
 	  port: 0
 	```
-2. Konfiguration als Eureka-Client -> Zur Anemdlung am Discovery Server
-	1. 
+2. Konfiguration als Eureka-Client -> Zur Anmeldung am Discovery Server
+	1. Name des Services festlegen
+	
+		```
+		spring:
+		  application:
+		    name: user-service	
+		```
