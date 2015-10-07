@@ -88,6 +88,15 @@
 	  port: 0
 	```
 2. Konfiguration als Eureka-Client -> Zur Anmeldung am Discovery Server
+	1. Eureka Dependency hinzufügen
+	
+		```
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		```
 	1. *bootstrap.(yml,properties)* - Name des Services festlegen
 	
 		```
