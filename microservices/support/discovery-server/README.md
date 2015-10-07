@@ -1,5 +1,18 @@
 # Discovery-Server Eureka
 
+## Dokumentation
+- Service Registration Server (Endeckung, Feststellung, ..) -> Eureka Server
+- Führt Buch über die im Netzwerk verfügbaren Dienste
+- Eine Spring-Anwendung kann als Instanz dienen:
+ - als Dienst registrieren
+ - als Klient agieren 
+     - dann kann die Anwendung andere Services finden
+- Der Eureka-Server kann als Spring-Boot Anwendung gestartet werden, das die Nutzung vereinfacht
+- Rest basierter Server der Primär in der Amazon Web Service (AWS) Cloud eingesetzt wird
+- Eureka kommt mit einer Java-basierenden Klient komponente, wodurch die Kommunikation mit dem Server vereinfacht wird
+- "Der Klient hat einen eingebauten Load-Balancer der Standardmäßig Round-Robni ausfführt" -> **TODO** überprüfen ob korrekt
+- Einsatz von Eureka bei Netflix: **TODO**
+
 ## Implementierung
 
 1. Spring Boot Template Application erstellen
