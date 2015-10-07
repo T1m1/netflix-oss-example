@@ -88,7 +88,7 @@
 	  port: 0
 	```
 2. Konfiguration als Eureka-Client -> Zur Anmeldung am Discovery Server
-	1. Name des Services festlegen
+	1. *bootstrap.(yml,properties)* - Name des Services festlegen
 	
 		```
 		spring:
