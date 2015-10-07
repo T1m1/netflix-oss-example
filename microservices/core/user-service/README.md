@@ -21,7 +21,9 @@
 	- Der Server empfängt "heartbeat"-Nachrichten von jeder instanz
 	- Wenn innerhalb eines Zeitfensters keine Nachricht mehr empfangen wird, wird die Instanz von der Registry entfernt
 	- Aktiviert werden kann der Klient mit *@EnableEurekaClient* oder wenn nur ein Eureka Server eingesetzt wird auch mit *@EnableDiscoveryClient*
-	- 
+	- *@EnableEurekaClient* macht die Applikation zu einer Eureka "Instanz" die sich bei sich selbst registrieren kann und einen "Klient", der die Registry nach der Postion von anderen Services anfragen kann.
+	- Der spring.application.name in ist für den Service erforderlich
+	- Konfigurations-Optionen sind [hier - EurekaInstanceConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java) und [hier - EurekaClientConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaClientConfigBean.java) zu finden 
 
 ## Implementierung
 
