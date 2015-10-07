@@ -88,6 +88,15 @@
 	  port: 0
 	```
 2. Konfiguration als Eureka-Client -> Zur Anmeldung am Discovery Server
+	1. Eureka Dependency hinzufügen
+	
+		```
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		```
 	1. *bootstrap.(yml,properties)* - Name des Services festlegen
 	
 		```
@@ -95,7 +104,7 @@
 		  application:
 		    name: user-service	
 		```
-	2. *application.(yml,proerties)* - Eureka Server "position" festelgen
+	2. *application.(yml,proerties)* - Eureka Server "position" festelgen !!! Wird nicht benötigt, lokalhost = default
 	
 		```
 			eureka:
@@ -103,6 +112,15 @@
 			    serviceUrl:
 			      defaultZone: http://127.0.0.1:8761/eureka/	
 		```
+	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern
+	
+		```
+			eureka:
+			  instance:
+			    leaseRenewalIntervalInSeconds: 10
+			    metadataMap:
+			      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+		```	
 	3. Annotation **@EnableDiscoveryClient** an die Service-Application anbringen (Klasse mit main)
 		```
 			@SpringBootApplication
