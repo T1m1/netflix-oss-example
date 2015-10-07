@@ -4,6 +4,10 @@
 ## Verwaltung
 - Starten: ``` mvn spring-boot:run``` oder ```start.bat```
 
+## TODO
+- Datenbankanbindung
+- HealtCheck Methoden
+
 ## Dokumentation
 - Konfigurationsdateien
 	- *bootstrap.(yml,properties)*
@@ -24,6 +28,7 @@
 	- *@EnableEurekaClient* macht die Applikation zu einer Eureka "Instanz" die sich bei sich selbst registrieren kann und einen "Klient", der die Registry nach der Postion von anderen Services anfragen kann.
 	- Der spring.application.name in ist für den Service erforderlich
 	- Konfigurations-Optionen sind [hier - EurekaInstanceConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java) und [hier - EurekaClientConfigBean](https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-core/src/main/java/org/springframework/cloud/netflix/eureka/EurekaClientConfigBean.java) zu finden 
+
 
 ## Implementierung
 
@@ -119,13 +124,15 @@
 			    serviceUrl:
 			      defaultZone: http://127.0.0.1:8761/eureka/	
 		```
-	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern + fallback wenn keine Einstellungen für die Eureka location angegeben sind
+	3. Instanz ID vergeben, damit Eureka erkennt, dass mehrere instanzen eines Services laufen bzw. das man das auf dem Dashboard sieht + Interval für die Anmeldung am Server verringern (+ fallback wenn keine Einstellungen für die Eureka location angegeben sind), (+ eureka.client.healthcheck.enable=true)
 	
 		```
 			eureka:
 			  client:
 			    serviceUrl:
 			      defaultZone: http://localhost:8761/eureka/
+			    healthcheck:
+      			      enabled: true
 			  instance:
 			    leaseRenewalIntervalInSeconds: 10
 			    metadataMap:
