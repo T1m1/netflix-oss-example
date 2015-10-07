@@ -1,0 +1,11 @@
+# wenn VCAP_APPLICATION_PORT Umgebungsvariable nicht verfügbar -> default Port 8761
+server:
+  port: ${PORT:8761}
+  
+ # Teilt der Instanz mit, sich nicht selber "bei sich selber" zu registrieren
+ eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
