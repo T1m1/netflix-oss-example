@@ -3,8 +3,11 @@ server:
   port: 0
 
 # 'leaseRenewalIntervalInSeconds' - beschleunigt den Prozess das ein Services sich beim Eureka anmeldet
-
+# 'instanceId' für die eindeutige identifizierung eines Services - Eureka Dashboard
 eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 10
     metadataMap:
