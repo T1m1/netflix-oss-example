@@ -16,7 +16,6 @@ import com.seitenbau.microservices.core.message.model.Message;
 //The @Component annotation marks a java class as a bean so the component-scanning mechanism 
 // of spring can pick it up and pull it into the application context
 @Component
-@RestController
 public class MessageIntegration {
 
 	// discovery client, to get service URL
@@ -29,7 +28,6 @@ public class MessageIntegration {
 	 * @param userId
 	 * @return all message of user with userId
 	 */
-	@RequestMapping("/test/{userId}")
 	public ResponseEntity<Message[]> getMessagesFromUserId(
 			@PathVariable String userId) {
 		try {

@@ -24,6 +24,7 @@ public class MailboxService {
 	@RequestMapping("/mailboxes/{userId}")
     public String getMailbox(@PathVariable String userId) {
 		
+		
 		// 1. get all messages of user with userId
 //		ResponseEntity<Message> messages = 
 		
