@@ -47,6 +47,14 @@
 			<version>1.16.6</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- bean dependency -->
+		<dependency>
+			<groupId>com.seitenbau.microservices.core.message</groupId>
+			<artifactId>message</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
