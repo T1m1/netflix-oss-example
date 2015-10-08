@@ -7,7 +7,7 @@ Liefert alle Nachrichten eines bestimmten Benutzers inkluse der Informationen ü
 
 ## Dokumentation
 - @Autowire - "Verdrahten" von Klassen 
-- @Component - Makiert eine Java Klasse als Bean, sodass der Komponenten-Scan-Mechanismus von Spring die Klasse in der Anwendung verwenden kann.
+- @Component - Makiert eine Java Klasse als Bean, sodass der Komponenten-Scan-Mechanismus von Spring die Klasse in der Anwendung finden und verwenden kann.
 
 ## Imlementierung
 
