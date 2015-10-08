@@ -10,9 +10,12 @@ public class Message {
 	private String fromId;
 	private String message;
 	private String subject;
-	
 
-	public Message(String messageId, String toId, String fromId, String message, String subject) {
+	public Message() {
+	}
+
+	public Message(String messageId, String toId, String fromId,
+			String message, String subject) {
 		this.messageId = messageId;
 		this.toId = toId;
 		this.fromId = fromId;
