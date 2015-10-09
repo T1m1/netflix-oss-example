@@ -1,5 +1,8 @@
 package com.seitenbau.microservices.composite.mailbox.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +22,15 @@ public class MessageIntegration {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
+	private static RestTemplate restTemplate;
+	
 	/**
 	 * Call message microservice and get all messages with specific user id
 	 * 
 	 * @param userId
 	 * @return all message of user with userId
 	 */
-	public ResponseEntity<Message[]> getMessagesFromUserId(String userId) {
+	public ResponseEntity<List<Message>> getMessagesFromUserId(String userId) {
 		try {
 			// get service URL for message-service
 			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
@@ -35,12 +40,12 @@ public class MessageIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
-			// create new rest template
-			RestTemplate restTemplate = new RestTemplate();
-			ResponseEntity<Message[]> responseEntity = restTemplate
-					.getForEntity(getMessagesURL, Message[].class);
+			// get messages as array
+			Message[] messagesAsArray = restTemplate.getForObject(getMessagesURL,
+					Message[].class);
 
-			return responseEntity;
+			return new ResponseEntity<List<Message>>(Arrays.asList(messagesAsArray),
+					HttpStatus.OK);
 		} catch (Exception e) {
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
