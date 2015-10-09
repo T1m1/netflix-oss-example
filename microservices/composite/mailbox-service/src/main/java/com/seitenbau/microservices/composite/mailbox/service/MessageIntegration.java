@@ -1,9 +1,10 @@
 package com.seitenbau.microservices.composite.mailbox.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ public class MessageIntegration {
 	private DiscoveryClient discoveryClient;
 
 	private static RestTemplate restTemplate;
-	
+
 	/**
 	 * Call message microservice and get all messages with specific user id
 	 * 
@@ -40,12 +41,18 @@ public class MessageIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
-			// get messages as array
-			Message[] messagesAsArray = restTemplate.getForObject(getMessagesURL,
-					Message[].class);
+			// alternative - get messages as array and convert to list
+			// Message[] messagesAsArray = restTemplate.getForObject(
+			// getMessagesURL, Message[].class);
+			// new ResponseEntity<List<Message>>(
+			// Arrays.asList(messagesAsArray), HttpStatus.OK);
 
-			return new ResponseEntity<List<Message>>(Arrays.asList(messagesAsArray),
-					HttpStatus.OK);
+			ResponseEntity<List<Message>> myMessageList = restTemplate
+					.exchange(getMessagesURL, HttpMethod.GET, null,
+							new ParameterizedTypeReference<List<Message>>() {
+							});
+
+			return myMessageList;
 		} catch (Exception e) {
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
