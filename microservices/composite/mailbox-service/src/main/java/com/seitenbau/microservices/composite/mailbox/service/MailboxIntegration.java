@@ -35,7 +35,7 @@ public class MailboxIntegration {
 	private static RestTemplate restTemplate;
 
 	/**
-	 * Call message microservice and get all messages with specific user id
+	 * Call message-service to get all messages with specific user id
 	 * 
 	 * @param userId
 	 * @return all message of user with userId
@@ -50,6 +50,7 @@ public class MailboxIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
+//			restTemplate = new RestTemplate();
 			ResponseEntity<List<Message>> myMessageList = restTemplate
 					.exchange(getMessagesURL, HttpMethod.GET, null,
 							new ParameterizedTypeReference<List<Message>>() {
@@ -62,7 +63,7 @@ public class MailboxIntegration {
 	}
 
 	/**
-	 * Call message microservice and get user with userId
+	 * Call user-service to get user with userId
 	 * 
 	 * @param userId
 	 * @return all message of user with userId
@@ -75,12 +76,12 @@ public class MailboxIntegration {
 
 			// build request URL
 			String getUserURL = instance.getHomePageUrl() + "/users/" + userId;
-
-			ResponseEntity<User> user = restTemplate.getForEntity(getUserURL,
-					User.class);
-
-			return user;
+//			restTemplate = new RestTemplate();
+			User user = restTemplate.getForObject(getUserURL, User.class);	
+			
+			return createResponse(user, HttpStatus.OK);
 		} catch (Exception e) {
+			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}

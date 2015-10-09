@@ -19,10 +19,12 @@ import com.seitenbau.microservices.core.user.model.User;
 public class MailboxService {
 
 	@Autowired
-	MailboxIntegration messageIntegration;
+	MailboxIntegration mailboxIntegration;
 
 	@RequestMapping("/info")
 	public String getStatus() {
+
+		System.out.println("test");
 		return "{\"timestamp\":\"" + new Date()
 				+ "\",\"content\":\"I'm okay ;-)\"}";
 	}
@@ -36,29 +38,37 @@ public class MailboxService {
 	public ResponseEntity<List<Message>> getMailbox(@PathVariable String userId) {
 
 		// 1. get all messages of user with userId
-		ResponseEntity<List<Message>> messages = messageIntegration
+		ResponseEntity<List<Message>> messages = mailboxIntegration
 				.getMessagesSentToUser(userId);
-		
+
 		// return empty list if no messages found
-		if(messages.getBody().isEmpty()) {
+		if (!messages.getStatusCode().is2xxSuccessful()) {
 			return messages;
 		}
-		
+
 		// 2. generate unique list with users
 		Set<String> userIds = new LinkedHashSet<>();
-		
+
 		// add IDs of receiver
 		userIds.add(messages.getBody().get(0).getToId());
 		// add IDs of sender
-		for(Message msg : messages.getBody()) {
+		for (Message msg : messages.getBody()) {
 			userIds.add(msg.getFromId());
 		}
-		
+
 		HashMap<String, User> allUser = new HashMap<String, User>();
-		
-		
+
+		// TODO RXJava - asynchrony
+		for (String id : userIds) {
+			ResponseEntity<User> user = mailboxIntegration.getUser(id);
+			if (user.getStatusCode().is2xxSuccessful()) {
+				allUser.put(id, user.getBody());
+			}
+		}
+
+		System.out.println(allUser.toString());
 
 		return messages;
 	}
-	
+
 }
