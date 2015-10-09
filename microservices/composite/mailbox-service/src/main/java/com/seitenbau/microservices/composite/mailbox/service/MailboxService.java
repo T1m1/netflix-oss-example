@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seitenbau.microservices.core.message.model.Message;
+
 
 @RestController
 public class MailboxService {
@@ -21,13 +23,19 @@ public class MailboxService {
 		 return "{\"timestamp\":\"" + new Date() + "\",\"content\":\"I'm okay ;-)\"}";
     }
 	
+	/**
+	 * TODO change String to ResponseEntity
+	 * TODO refactor array to list
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping("/mailboxes/{userId}")
-    public String getMailbox(@PathVariable String userId) {
+    public ResponseEntity<Message[]> getMailbox(@PathVariable String userId) {
 		
 		
 		// 1. get all messages of user with userId
-//		ResponseEntity<Message> messages = 
-		
-      return null;
+		ResponseEntity<Message[]> messages = messageIntegration.getMessagesFromUserId(userId);
+		// --------------------- XXX dont work correct
+      return messages;
     }
 }

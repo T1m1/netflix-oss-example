@@ -40,7 +40,7 @@ public class MessageIntegration {
 			ResponseEntity<Message[]> responseEntity = restTemplate
 					.getForEntity(getMessagesURL, Message[].class);
 
-			return createResponse(responseEntity.getBody(), HttpStatus.OK);
+			return responseEntity;
 		} catch (Exception e) {
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
