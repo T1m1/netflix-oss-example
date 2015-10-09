@@ -17,7 +17,7 @@ import com.seitenbau.microservices.core.message.model.Message;
 //The @Component annotation marks a java class as a bean so the component-scanning mechanism 
 // of spring can pick it up and pull it into the application context
 @Component
-public class MessageIntegration {
+public class MessageServiceIntegration {
 
 	// discovery client, to get service URL
 	@Autowired

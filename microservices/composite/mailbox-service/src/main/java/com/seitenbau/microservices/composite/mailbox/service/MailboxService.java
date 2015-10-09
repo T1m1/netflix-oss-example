@@ -19,7 +19,7 @@ import com.seitenbau.microservices.core.user.model.User;
 public class MailboxService {
 
 	@Autowired
-	MessageIntegration messageIntegration;
+	MessageServiceIntegration messageIntegration;
 
 	@RequestMapping("/info")
 	public String getStatus() {
