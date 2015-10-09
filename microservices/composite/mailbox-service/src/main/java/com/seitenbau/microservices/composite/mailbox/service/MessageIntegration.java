@@ -31,7 +31,7 @@ public class MessageIntegration {
 	 * @param userId
 	 * @return all message of user with userId
 	 */
-	public ResponseEntity<List<Message>> getMessagesFromUserId(String userId) {
+	public ResponseEntity<List<Message>> getMessagesSentToUser(String userId) {
 		try {
 			// get service URL for message-service
 			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
@@ -41,7 +41,7 @@ public class MessageIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
-			// alternative - get messages as array and convert to list
+			// # alternative - get messages as array and convert to list
 			// Message[] messagesAsArray = restTemplate.getForObject(
 			// getMessagesURL, Message[].class);
 			// new ResponseEntity<List<Message>>(
