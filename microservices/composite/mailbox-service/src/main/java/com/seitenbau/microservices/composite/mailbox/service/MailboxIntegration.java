@@ -13,11 +13,20 @@ import org.springframework.web.client.RestTemplate;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
 import com.seitenbau.microservices.core.message.model.Message;
+import com.seitenbau.microservices.core.user.model.User;
 
-//The @Component annotation marks a java class as a bean so the component-scanning mechanism 
+/**
+ * TODO implement generic method
+ * 
+ * @author truprecht
+ *
+ */
+
+// The @Component annotation marks a java class as a bean so the
+// component-scanning mechanism
 // of spring can pick it up and pull it into the application context
 @Component
-public class MessageServiceIntegration {
+public class MailboxIntegration {
 
 	// discovery client, to get service URL
 	@Autowired
@@ -41,18 +50,36 @@ public class MessageServiceIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
-			// # alternative - get messages as array and convert to list
-			// Message[] messagesAsArray = restTemplate.getForObject(
-			// getMessagesURL, Message[].class);
-			// new ResponseEntity<List<Message>>(
-			// Arrays.asList(messagesAsArray), HttpStatus.OK);
-
 			ResponseEntity<List<Message>> myMessageList = restTemplate
 					.exchange(getMessagesURL, HttpMethod.GET, null,
 							new ParameterizedTypeReference<List<Message>>() {
 							});
 
 			return myMessageList;
+		} catch (Exception e) {
+			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
+		}
+	}
+
+	/**
+	 * Call message microservice and get user with userId
+	 * 
+	 * @param userId
+	 * @return all message of user with userId
+	 */
+	public ResponseEntity<User> getUser(String userId) {
+		try {
+			// get service URL for user-service
+			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
+					"user-service", false);
+
+			// build request URL
+			String getUserURL = instance.getHomePageUrl() + "/users/" + userId;
+
+			ResponseEntity<User> user = restTemplate.getForEntity(getUserURL,
+					User.class);
+
+			return user;
 		} catch (Exception e) {
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
