@@ -1,0 +1,5 @@
+info:
+  component: Zuul Server
+
+zuul:
+  ignoredServices: "message-service"
