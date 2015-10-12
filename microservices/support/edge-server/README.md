@@ -23,11 +23,16 @@
 
 ## Implementierung
 1. @EnableZuulProxy an die Spring-Boot Main Klasse
-2. 
-
+2. Maven Dependencies hinzufgen *org.springframework.cloud-spring-cloud-starter-eureka*, *org.springframework.cloud-spring-cloud-starter-zuul*, *org.springframework.boot-spring-boot-starter-web*
+3. Namen für Anwendung vergeben in *bootstrap.yml*
+  
+  ```
+  spring:
+    application:
+      name: edgeserver
+  ```
 
 
 ## Einstellungen
-```
 
-```
+
