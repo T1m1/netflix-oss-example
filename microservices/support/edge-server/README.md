@@ -33,6 +33,18 @@
   ```
 
 
-## Einstellungen
-
+## Einstellungen - *application.yml*
+  ```
+  # Eingangsport - wird keiner angegeben, default -> 8080
+  server:
+    port: 8765
+  
+  # alle services ignorieren, bis auf freigegebene
+  # wenn diese Konfiguration nicht mit angegeben wird, können alle services direkt über zuul aufgerufen werden z.b. /user-service/user
+  zuul.
+    ignoredServices: "*"
+    routes:
+      product:
+        path: /test/**
+  ```
 
