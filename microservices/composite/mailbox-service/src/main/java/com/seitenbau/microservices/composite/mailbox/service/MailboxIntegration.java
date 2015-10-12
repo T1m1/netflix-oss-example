@@ -41,21 +41,25 @@ public class MailboxIntegration {
 	 * @return all message of user with userId
 	 */
 	public ResponseEntity<List<Message>> getMessagesSentToUser(String userId) {
+		return getResponseAsList("message-service", "/messages/" + userId);
+	}
+
+	public <T> ResponseEntity<List<T>> getResponseAsList(String serviceId,
+			String requestURI) {
 		try {
 			// get service URL for message-service
 			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
-					"message-service", false);
+					serviceId, false);
 
 			// build request URL
-			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
-					+ userId;
+			String url = instance.getHomePageUrl() + requestURI;
 
 			restTemplate = new RestTemplate();
-			ResponseEntity<List<Message>> myMessageList = restTemplate
-					.exchange(getMessagesURL, HttpMethod.GET, null,
-							new ParameterizedTypeReference<List<Message>>() {
-							});
-			return myMessageList;
+			ResponseEntity<List<T>> responseList = restTemplate.exchange(url,
+					HttpMethod.GET, null,
+					new ParameterizedTypeReference<List<T>>() {
+					});
+			return responseList;
 		} catch (Exception e) {
 			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
@@ -76,7 +80,7 @@ public class MailboxIntegration {
 
 			// build request URL
 			String getUserURL = instance.getHomePageUrl() + "/users/" + userId;
-			
+
 			// get user information
 			restTemplate = new RestTemplate();
 			User user = restTemplate.getForObject(getUserURL, User.class);

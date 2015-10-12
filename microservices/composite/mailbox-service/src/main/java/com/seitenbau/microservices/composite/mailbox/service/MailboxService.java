@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seitenbau.microservices.composite.mailbox.model.MailboxEntry;
+import com.seitenbau.microservices.core.document.model.Document;
 import com.seitenbau.microservices.core.message.model.Message;
 import com.seitenbau.microservices.core.user.model.User;
 
@@ -51,22 +52,33 @@ public class MailboxService {
 
 		// 2. generate unique list with users
 		Set<String> userIds = new LinkedHashSet<>();
+		// generate unique list with documents
+		Set<String> documentIds = new LinkedHashSet<>();
 
 		// add IDs of receiver
 		userIds.add(messages.getBody().get(0).getToId());
 		// add IDs of sender
 		for (Message msg : messages.getBody()) {
 			userIds.add(msg.getFromId());
+			// add IDs of all attachments
+			for (String attachmentId : msg.getAttachmentIds()) {
+				documentIds.add(attachmentId);
+			}
 		}
 
 		HashMap<String, User> allUser = new HashMap<String, User>();
-
+		HashMap<String, Document> allDocuments = new HashMap<String, Document>();
+		
 		// TODO RXJava - asynchrony
 		for (String id : userIds) {
 			ResponseEntity<User> user = mailboxIntegration.getUser(id);
 			if (user.getStatusCode().is2xxSuccessful()) {
 				allUser.put(id, user.getBody());
 			}
+		}
+		
+		for (String id : documentIds){
+//			ResponseEntity<Document> document = 
 		}
 
 		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
