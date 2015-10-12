@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seitenbau.microservices.core.document.model.Document;
 
-
 @RestController
 public class DocumentService {
-	
+
 	@RequestMapping("/documents/{documentId}")
-    public Document getDocument(@PathVariable String documentId) {		
-        return new Document(documentId, "mypdf");
-    }
+	public Document getDocument(@PathVariable String documentId) {
+		return new Document(documentId, "mypdf");
+	}
 
 }
