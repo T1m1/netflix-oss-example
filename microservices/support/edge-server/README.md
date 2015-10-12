@@ -39,6 +39,12 @@
       mailbox-service:
         path: /mailbox/**
   ```
+  oder message-service verbergen
+  
+  ```
+  zuul:
+    ignoredServices: "message-service"
+  ``` 
 
 
 ## Mögliche Einstellungen - *application.yml*
