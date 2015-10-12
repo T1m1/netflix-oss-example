@@ -12,18 +12,18 @@ public class Message {
 	private String fromId;
 	private String message;
 	private String subject;
-	private List<String> attachment;
+	private List<String> attachmentIds;
 
 	public Message() {
 	}
 
 	public Message(String messageId, String toId, String fromId,
-			String message, String subject, List<String> attachment) {
+			String message, String subject, List<String> attachmentIds) {
 		this.messageId = messageId;
 		this.toId = toId;
 		this.fromId = fromId;
 		this.message = message;
 		this.subject = subject;
-		this.attachment = attachment;
+		this.attachmentIds = attachmentIds;
 	}
 }
