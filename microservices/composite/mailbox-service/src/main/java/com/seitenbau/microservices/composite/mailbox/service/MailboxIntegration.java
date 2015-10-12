@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.DiscoveryClient;
+import com.seitenbau.microservices.core.document.model.Document;
 import com.seitenbau.microservices.core.message.model.Message;
 import com.seitenbau.microservices.core.user.model.User;
 
@@ -55,6 +56,17 @@ public class MailboxIntegration {
 	public ResponseEntity<User> getUser(String userId) {
 		return getResponseAsObject("user-service", "/users/" + userId,
 				User.class);
+	}
+
+	/**
+	 * Get document information of specific document
+	 * 
+	 * @param documentId
+	 * @return
+	 */
+	public ResponseEntity<Document> getDocument(String documentId) {
+		return getResponseAsObject("document-service", "/document/"
+				+ documentId, Document.class);
 	}
 
 	private <T> ResponseEntity<T> getResponseAsList(String serviceId,
