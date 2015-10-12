@@ -16,8 +16,11 @@ public class MessageService {
 	@RequestMapping(value = "/messages/{messageId}", method = RequestMethod.GET, produces = "application/json")
 	public List<Message> getMessage(@PathVariable String messageId) {
 		List<Message> msg = new ArrayList<Message>();
+		ArrayList<String> attachments = new ArrayList<String>();
+		attachments.add("id123");
+		attachments.add("id234");
 		msg.add(new Message(messageId, "1a2b3c4e", "0z1y2x3w", "Hello Word",
-				"Huhu"));
+				"Huhu", attachments));
 		return msg;
 	}
 }
