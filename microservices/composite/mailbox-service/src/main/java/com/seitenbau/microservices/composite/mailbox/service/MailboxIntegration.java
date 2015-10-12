@@ -41,11 +41,14 @@ public class MailboxIntegration {
 	 * @return all message of user with userId
 	 */
 	public ResponseEntity<List<Message>> getMessagesSentToUser(String userId) {
-		return getResponseAsList("message-service", "/messages/" + userId);
+		return getResponseAsList("message-service", "/messages/" + userId,
+				new ParameterizedTypeReference<List<Message>>() {
+				});
 	}
 
-	public <T> ResponseEntity<List<T>> getResponseAsList(String serviceId,
-			String requestURI) {
+	private <T> ResponseEntity<T> getResponseAsList(String serviceId,
+			String requestURI,
+			ParameterizedTypeReference<T> parameterizedTypeReference) {
 		try {
 			// get service URL for message-service
 			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
@@ -55,10 +58,8 @@ public class MailboxIntegration {
 			String url = instance.getHomePageUrl() + requestURI;
 
 			restTemplate = new RestTemplate();
-			ResponseEntity<List<T>> responseList = restTemplate.exchange(url,
-					HttpMethod.GET, null,
-					new ParameterizedTypeReference<List<T>>() {
-					});
+			ResponseEntity<T> responseList = restTemplate.exchange(url,
+					HttpMethod.GET, null, parameterizedTypeReference);
 			return responseList;
 		} catch (Exception e) {
 			System.out.println(e);
@@ -73,26 +74,32 @@ public class MailboxIntegration {
 	 * @return all message of user with userId
 	 */
 	public ResponseEntity<User> getUser(String userId) {
+		return getResponseAsObject("user-service", "/users/" + userId,
+				User.class);
+	}
+
+	private <T> ResponseEntity<T> getResponseAsObject(String serviceId,
+			String requestURI, Class<T> type) {
 		try {
 			// get service URL for user-service
 			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
-					"user-service", false);
+					serviceId, false);
 
 			// build request URL
-			String getUserURL = instance.getHomePageUrl() + "/users/" + userId;
+			String getUserURL = instance.getHomePageUrl() + requestURI;
 
 			// get user information
 			restTemplate = new RestTemplate();
-			User user = restTemplate.getForObject(getUserURL, User.class);
+			T obj = restTemplate.getForObject(getUserURL, type);
 
-			return createResponse(user, HttpStatus.OK);
+			return createResponse(obj, HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
 
-	public <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
+	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
 		return new ResponseEntity<>(body, httpStatus);
 	}
 }

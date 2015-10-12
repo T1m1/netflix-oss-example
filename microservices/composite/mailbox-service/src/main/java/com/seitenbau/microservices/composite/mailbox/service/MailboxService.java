@@ -50,14 +50,17 @@ public class MailboxService {
 			return createResponse(null, messages.getStatusCode());
 		}
 
+		System.out.println(messages.getBody());
 		// 2. generate unique list with users
 		Set<String> userIds = new LinkedHashSet<>();
 		// generate unique list with documents
 		Set<String> documentIds = new LinkedHashSet<>();
 
+		myMethod(messages.getBody().get(0));
 		// add IDs of receiver
 		userIds.add(messages.getBody().get(0).getToId());
 		// add IDs of sender
+		System.out.println("2");
 		for (Message msg : messages.getBody()) {
 			userIds.add(msg.getFromId());
 			// add IDs of all attachments
@@ -116,6 +119,11 @@ public class MailboxService {
 	// TODO -> util class
 	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
 		return new ResponseEntity<>(body, httpStatus);
+	}
+	
+	public void myMethod(Object obj) {
+	    Class cls = obj.getClass();
+	    System.out.println("The type of the object is: " + cls.getName());
 	}
 
 }
