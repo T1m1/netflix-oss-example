@@ -4,6 +4,8 @@
 ## Zuul
 
 - Ist ein JVM basierter Router
+- Nach außen kann eine Website aussehen, als würde sie von einem einzigen Server angeboten werden.
+- Bestimmte URLs auf verschiedene Services
 - Server-Seitiges Load-Balancing
 - wird bei Netflix eingesetzt für:
   - Authentication
@@ -13,7 +15,7 @@
   - Service Einbindung
   - Last Ausgleich
   - Security
-- Zuuls Regelwerk erlaubt Regeln und Filter geschrieben in einer beliebigen JVM Sprache. Standardmäig wird Java und Groovy unterstützt.
+- Zuuls Regelwerk erlaubt Regeln und Filter in einer beliebigen JVM Sprache zu schreiben. Standardmäig wird Java und Groovy unterstützt.
 - Aktivierung mit @EnableZuulProxy an einer Spring-Boot Main Klasse
 - Laut Konvention, wird ein Service mit der EurekaID "users" Requests vom Proxy mit /users
   - dies kann man in den Konfigurationen ändern
