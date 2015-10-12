@@ -32,7 +32,7 @@ public class MailboxIntegration {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	private static RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 
 	/**
 	 * Call message-service to get all messages with specific user id
@@ -46,27 +46,6 @@ public class MailboxIntegration {
 				});
 	}
 
-	private <T> ResponseEntity<T> getResponseAsList(String serviceId,
-			String requestURI,
-			ParameterizedTypeReference<T> parameterizedTypeReference) {
-		try {
-			// get service URL for message-service
-			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
-					serviceId, false);
-
-			// build request URL
-			String url = instance.getHomePageUrl() + requestURI;
-
-			restTemplate = new RestTemplate();
-			ResponseEntity<T> responseList = restTemplate.exchange(url,
-					HttpMethod.GET, null, parameterizedTypeReference);
-			return responseList;
-		} catch (Exception e) {
-			System.out.println(e);
-			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
-		}
-	}
-
 	/**
 	 * Call user-service to get user with userId
 	 * 
@@ -78,15 +57,26 @@ public class MailboxIntegration {
 				User.class);
 	}
 
+	private <T> ResponseEntity<T> getResponseAsList(String serviceId,
+			String requestURI,
+			ParameterizedTypeReference<T> parameterizedTypeReference) {
+		try {
+			String url = getRequestUrl(serviceId, requestURI);
+
+			restTemplate = new RestTemplate();
+			ResponseEntity<T> responseList = restTemplate.exchange(url,
+					HttpMethod.GET, null, parameterizedTypeReference);
+			return responseList;
+		} catch (Exception e) {
+			System.out.println(e);
+			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
+		}
+	}
+
 	private <T> ResponseEntity<T> getResponseAsObject(String serviceId,
 			String requestURI, Class<T> type) {
 		try {
-			// get service URL for user-service
-			InstanceInfo instance = discoveryClient.getNextServerFromEureka(
-					serviceId, false);
-
-			// build request URL
-			String getUserURL = instance.getHomePageUrl() + requestURI;
+			String getUserURL = getRequestUrl(serviceId, requestURI);
 
 			// get user information
 			restTemplate = new RestTemplate();
@@ -97,6 +87,15 @@ public class MailboxIntegration {
 			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
+	}
+
+	private String getRequestUrl(String serviceId, String requestURI) {
+		// get service URL for message-service
+		InstanceInfo instance = discoveryClient.getNextServerFromEureka(
+				serviceId, false);
+
+		// build request URL
+		return instance.getHomePageUrl() + requestURI;
 	}
 
 	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
