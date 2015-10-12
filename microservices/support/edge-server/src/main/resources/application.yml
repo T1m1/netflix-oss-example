@@ -3,3 +3,4 @@ info:
 
 zuul:
   ignoredServices: "message-service"
+  prefix: /apiv1
