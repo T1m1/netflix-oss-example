@@ -39,15 +39,13 @@ public class MailboxService {
 	public ResponseEntity<List<MailboxEntry>> getMailbox(
 			@PathVariable String userId) {
 
-		List<MailboxEntry> mailboxEntries = new ArrayList<MailboxEntry>();
-
 		// 1. get all messages of user with userId
 		ResponseEntity<List<Message>> messages = mailboxIntegration
 				.getMessagesSentToUser(userId);
 
 		// return empty list if no messages found
 		if (!messages.getStatusCode().is2xxSuccessful()) {
-			return createResponse(mailboxEntries, messages.getStatusCode());
+			return createResponse(null, messages.getStatusCode());
 		}
 
 		// 2. generate unique list with users
@@ -70,13 +68,29 @@ public class MailboxService {
 			}
 		}
 
-		System.out.println(allUser.toString());
-		System.out.println(userIds.toString());
+		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
+				messages.getBody(), allUser);
 
 		// TODO get documents
-		// TODO create message entry object
-
+		
 		return createResponse(mailboxEntries, messages.getStatusCode());
+	}
+
+	private List<MailboxEntry> buildMailboxEntries(List<Message> messages,
+			HashMap<String, User> allUser) {
+
+		List<MailboxEntry> entries = new ArrayList<MailboxEntry>();
+
+		for (Message message : messages) {
+			MailboxEntry mailboxEntry = new MailboxEntry();
+			mailboxEntry.setMessageId(message.getMessageId());
+			mailboxEntry.setUserFrom(allUser.get(message.getFromId()));
+			mailboxEntry.setUserTo(allUser.get(message.getToId()));
+			mailboxEntry.setMessage(message.getMessage());
+			mailboxEntry.setSubject(message.getSubject());
+			entries.add(mailboxEntry);
+		}
+		return entries;
 	}
 
 	// TODO -> util class
