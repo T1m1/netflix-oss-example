@@ -50,14 +50,14 @@ public class MailboxIntegration {
 			String getMessagesURL = instance.getHomePageUrl() + "/messages/"
 					+ userId;
 
-//			restTemplate = new RestTemplate();
+			restTemplate = new RestTemplate();
 			ResponseEntity<List<Message>> myMessageList = restTemplate
 					.exchange(getMessagesURL, HttpMethod.GET, null,
 							new ParameterizedTypeReference<List<Message>>() {
 							});
-
 			return myMessageList;
 		} catch (Exception e) {
+			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
@@ -76,9 +76,11 @@ public class MailboxIntegration {
 
 			// build request URL
 			String getUserURL = instance.getHomePageUrl() + "/users/" + userId;
-//			restTemplate = new RestTemplate();
-			User user = restTemplate.getForObject(getUserURL, User.class);	
 			
+			// get user information
+			restTemplate = new RestTemplate();
+			User user = restTemplate.getForObject(getUserURL, User.class);
+
 			return createResponse(user, HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);

@@ -26,8 +26,6 @@ public class MailboxService {
 
 	@RequestMapping("/info")
 	public String getStatus() {
-
-		System.out.println("test");
 		return "{\"timestamp\":\"" + new Date()
 				+ "\",\"content\":\"I'm okay ;-)\"}";
 	}
@@ -38,10 +36,11 @@ public class MailboxService {
 	 * @return
 	 */
 	@RequestMapping("/mailboxes/{userId}")
-	public ResponseEntity<List<MailboxEntry>> getMailbox(@PathVariable String userId) {
+	public ResponseEntity<List<MailboxEntry>> getMailbox(
+			@PathVariable String userId) {
 
 		List<MailboxEntry> mailboxEntries = new ArrayList<MailboxEntry>();
-		
+
 		// 1. get all messages of user with userId
 		ResponseEntity<List<Message>> messages = mailboxIntegration
 				.getMessagesSentToUser(userId);
@@ -71,12 +70,16 @@ public class MailboxService {
 			}
 		}
 
+		System.out.println(allUser.toString());
+		System.out.println(userIds.toString());
+
 		// TODO get documents
 		// TODO create message entry object
 
 		return createResponse(mailboxEntries, messages.getStatusCode());
 	}
-	
+
+	// TODO -> util class
 	public <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
 		return new ResponseEntity<>(body, httpStatus);
 	}
