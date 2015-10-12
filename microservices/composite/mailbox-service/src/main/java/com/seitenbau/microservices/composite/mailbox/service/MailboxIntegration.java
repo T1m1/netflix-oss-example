@@ -65,7 +65,7 @@ public class MailboxIntegration {
 	 * @return
 	 */
 	public ResponseEntity<Document> getDocument(String documentId) {
-		return getResponseAsObject("document-service", "/document/"
+		return getResponseAsObject("document-service", "/documents/"
 				+ documentId, Document.class);
 	}
 
