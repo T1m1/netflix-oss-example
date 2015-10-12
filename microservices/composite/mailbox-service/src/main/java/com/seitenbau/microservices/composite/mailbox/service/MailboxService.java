@@ -31,9 +31,10 @@ public class MailboxService {
 	}
 
 	/**
+	 * Get a list of all mails including all required information.
 	 * 
 	 * @param userId
-	 * @return
+	 * @return list with all mails
 	 */
 	@RequestMapping("/mailboxes/{userId}")
 	public ResponseEntity<List<MailboxEntry>> getMailbox(
@@ -72,10 +73,17 @@ public class MailboxService {
 				messages.getBody(), allUser);
 
 		// TODO get documents
-		
+
 		return createResponse(mailboxEntries, messages.getStatusCode());
 	}
 
+	/**
+	 * Build response object with all necessary information.
+	 * 
+	 * @param messages
+	 * @param allUser
+	 * @return
+	 */
 	private List<MailboxEntry> buildMailboxEntries(List<Message> messages,
 			HashMap<String, User> allUser) {
 
@@ -94,7 +102,7 @@ public class MailboxService {
 	}
 
 	// TODO -> util class
-	public <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
+	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
 		return new ResponseEntity<>(body, httpStatus);
 	}
 
