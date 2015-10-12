@@ -31,6 +31,14 @@
     application:
       name: edgeserver
   ```
+4. Routen beliebig konfigurieren
+  
+  ```
+  zuul.
+    routes:
+      mailbox-service:
+        path: /mailbox/**
+  ```
 
 
 ## Mögliche Einstellungen - *application.yml*
