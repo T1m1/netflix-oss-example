@@ -78,7 +78,10 @@ public class MailboxService {
 		}
 		
 		for (String id : documentIds){
-//			ResponseEntity<Document> document = 
+			ResponseEntity<Document> document = mailboxIntegration.getDocument(id);
+			if (document.getStatusCode().is2xxSuccessful()) {
+				allDocuments.put(id, document.getBody());
+			}
 		}
 
 		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
