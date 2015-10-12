@@ -31,7 +31,7 @@
     application:
       name: edgeserver
   ```
-4. Routen beliebig konfigurieren
+4. Routen beliebig konfigurieren z.b. vom Mailbox-Service -> /mailbox/
   
   ```
   zuul.
