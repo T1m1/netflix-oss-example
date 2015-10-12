@@ -68,7 +68,7 @@ public class MailboxService {
 
 		HashMap<String, User> allUser = new HashMap<String, User>();
 		HashMap<String, Document> allDocuments = new HashMap<String, Document>();
-		
+
 		// TODO RXJava - asynchrony
 		for (String id : userIds) {
 			ResponseEntity<User> user = mailboxIntegration.getUser(id);
@@ -76,16 +76,17 @@ public class MailboxService {
 				allUser.put(id, user.getBody());
 			}
 		}
-		
-		for (String id : documentIds){
-			ResponseEntity<Document> document = mailboxIntegration.getDocument(id);
+
+		for (String id : documentIds) {
+			ResponseEntity<Document> document = mailboxIntegration
+					.getDocument(id);
 			if (document.getStatusCode().is2xxSuccessful()) {
 				allDocuments.put(id, document.getBody());
 			}
 		}
 
 		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
-				messages.getBody(), allUser);
+				messages.getBody(), allUser, allDocuments);
 
 		// TODO get documents
 
@@ -97,10 +98,12 @@ public class MailboxService {
 	 * 
 	 * @param messages
 	 * @param allUser
+	 * @param allDocuments
 	 * @return
 	 */
 	private List<MailboxEntry> buildMailboxEntries(List<Message> messages,
-			HashMap<String, User> allUser) {
+			HashMap<String, User> allUser,
+			HashMap<String, Document> allDocuments) {
 
 		List<MailboxEntry> entries = new ArrayList<MailboxEntry>();
 
@@ -111,6 +114,14 @@ public class MailboxService {
 			mailboxEntry.setUserTo(allUser.get(message.getToId()));
 			mailboxEntry.setMessage(message.getMessage());
 			mailboxEntry.setSubject(message.getSubject());
+			if (!allDocuments.isEmpty()) {
+				ArrayList<Document> attachments = new ArrayList<Document>();
+				for (String attachmentId : message.getAttachmentIds()) {
+					attachments.add(allDocuments.get(attachmentId));
+				}
+				mailboxEntry.setAttachments(attachments);
+			}
+
 			entries.add(mailboxEntry);
 		}
 		return entries;
