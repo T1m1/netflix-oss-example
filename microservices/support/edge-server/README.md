@@ -36,7 +36,8 @@
 ## Mögliche Einstellungen - *application.yml*
 - **server.port** Eingangsport - wird keiner angegeben, default -> 8080
 - **zuul.ignoreservices** -  Zu ignorierende Services - mit "*" werden alle bis auf die freigegebenen ignoriert bzw. nicht Sichtbar gemacht
-- Bsp.: ignoriert alle bis auf den Service "product". Dieser steht unter dem pfad "/test/**" zur Verfügung
+- Bsp.: ignoriert alle bis auf den Service "product". Dieser steht unter dem pfad "/test/\*\*" zur Verfügung
+
   ```
   zuul.
     ignoredServices: "*"
