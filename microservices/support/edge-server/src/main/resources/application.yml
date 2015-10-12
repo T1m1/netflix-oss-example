@@ -1,0 +1,9 @@
+info:
+  component: Zuul Server
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    mailbox-service:
+      path: /mailbox/**
+
