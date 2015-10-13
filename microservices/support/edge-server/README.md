@@ -7,6 +7,7 @@
 - Nach außen kann eine Website aussehen, als würde sie von einem einzigen Server angeboten werden.
 - Bestimmte URLs auf verschiedene Services
 - Server-Seitiges Load-Balancing
+- Zuul verwendet Ribbon !!!!
 - wird bei Netflix eingesetzt für:
   - Authentication
   - Stress-Tests 
