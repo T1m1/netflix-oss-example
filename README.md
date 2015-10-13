@@ -21,7 +21,7 @@
 
 
 ## Implementierungs-Schritte
-1.[Core-Services](https://github.com/T1m1/bachelor-project/blob/master/microservices/core/user-service/README.md) erstellen
+1. [Core-Services](https://github.com/T1m1/bachelor-project/blob/master/microservices/core/user-service/README.md) erstellen
 2. [Discovery-Server](https://github.com/T1m1/bachelor-project/blob/master/microservices/support/discovery-server/README.md) (Eureka-Server) erstellen
 3. Core-Services am Discovery-Service anmelden lassen
 4. Routing mit [Zuul](https://github.com/T1m1/bachelor-project/tree/master/microservices/support/edge-server/README.md)
