@@ -67,11 +67,11 @@ public class MyClass {
 1. Dependency hinzufügen
 
   ```
-  <dependency>
-      <groupId>com.netflix.hystrix</groupId>
-      <artifactId>hystrix-core</artifactId>
-      <version>x.y.z</version>
-  </dependency>
+ <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
   ```
   
 2. Hystrix Circuit Breaker aktivieren mit **@EnableCircuitBreaker** an die Spring Boot Anwendung
