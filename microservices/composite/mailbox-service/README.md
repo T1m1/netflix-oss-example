@@ -47,6 +47,7 @@ public class MyClass {
 [quelle](http://projects.spring.io/spring-cloud/spring-cloud.html#spring-cloud-ribbon)
 
 ## Hystrix - Circuit Breaker
+Wenn ein Service keine Response gibt (Timeout oder Kommunikationserror). Kann Hystrix den Aufruf zu einer internen Fallback Methode weiterleiten. Wenn der Service mehrfach aufgerufen wird, öffnet Hystrix den Circuit Breakter und ruft sofort die Fallback Methode auf (Fast Fail). Um zu überprüfen, ob der Service wieder zur Verfügung steht lässt Hystrix immer wieder einzelne Requests durch.
 - Hystrix bietet implmenetierungen von oft eingesetzten "fault-Tolerence" Pattern für Verteilte Systeme wie z.b. Circuit-Breakers und Bulkheads
 - Ist eine Bibliothek die zur Kontrolle der Kommunikation zwischen verteilten Services dient.
 - Hystrix wurde entworfen für:
