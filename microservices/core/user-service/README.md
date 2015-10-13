@@ -2,7 +2,8 @@
 - Benutzerverwaltung
 
 ## Verwaltung
-- Starten: ``` mvn spring-boot:run``` oder ```start.bat```
+- MongoDB-Server auf Port 1001 starten und Service mit ``` mvn spring-boot:run``` ausführen
+- oder ```start.bat``` aufrufen
 
 ## Dokumentation
 - Konfigurationsdateien
@@ -150,6 +151,8 @@
 			    }
 			}	
 		```
+
+
 ## MongoDB
 1. Hinzufügen der MongoDB Dependency
 
