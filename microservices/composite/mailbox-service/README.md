@@ -61,7 +61,7 @@ public class MyClass {
   - Buklhead:
   - Swimlane
   - Circuit-Breaker
-  - 
+
   
 ### Hystrix einbinden - [How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)
 1. Dependency hinzufügen
