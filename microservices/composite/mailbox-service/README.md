@@ -64,7 +64,7 @@ Wenn ein Service keine Response gibt (Timeout oder Kommunikationserror). Kann Hy
   - Circuit-Breaker
 
   
-### Hystrix einbinden - [How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)
+### Hystrix einbinden 
 1. Dependency hinzufügen
 
   ```
@@ -88,3 +88,5 @@ Wenn ein Service keine Response gibt (Timeout oder Kommunikationserror). Kann Hy
         ...
     }
   ```
+  
+[How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)

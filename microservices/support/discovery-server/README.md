@@ -1,4 +1,6 @@
-# Discovery-Server Eureka
+# Discovery-Server Eureka 
+
+Dashboard - [lokal](http://localhost:8761/)
 
 TODO: 
 - Wie mehrere Instanzen des Eureka Servers aufsetzen / verwalten 
