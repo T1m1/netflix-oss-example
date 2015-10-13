@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.seitenbau.microservices.core.document.model.Document;
 import com.seitenbau.microservices.core.message.model.Message;
 import com.seitenbau.microservices.core.user.model.User;
@@ -49,12 +50,29 @@ public class MailboxIntegration {
 	/**
 	 * Call user-service to get user with userId
 	 * 
+	 * NOTE: Function body can replaces with method call of
+	 * "getResponseAsObject". Only for demonstration of hystrix.
+	 * 
 	 * @param userId
 	 * @return all message of user with userId
 	 */
+	@HystrixCommand(fallbackMethod = "defaultUsers")
 	public ResponseEntity<User> getUser(String userId) {
-		return getResponseAsObject("user-service", "/users/" + userId,
-				User.class);
+		String url = getRequestUrl("user-service", "/users/" + userId);
+		User obj = restTemplate.getForObject(url, User.class);
+		return createResponse(obj, HttpStatus.OK);
+	}
+
+	/**
+	 * Fallback Method for users
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public ResponseEntity<User> defaultUsers(String userId) {
+		System.out.println("fallback");
+		return createResponse(new User(userId, "fallbackUser",
+				"fallbackLastname"), HttpStatus.BAD_GATEWAY);
 	}
 
 	/**
