@@ -4,10 +4,6 @@
 ## Verwaltung
 - Starten: ``` mvn spring-boot:run``` oder ```start.bat```
 
-## TODO
-- Datenbankanbindung
-- HealtCheck Methoden
-
 ## Dokumentation
 - Konfigurationsdateien
 	- *bootstrap.(yml,properties)*
