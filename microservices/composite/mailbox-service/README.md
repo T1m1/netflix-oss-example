@@ -46,5 +46,15 @@ public class MyClass {
 ```
 [quelle](http://projects.spring.io/spring-cloud/spring-cloud.html#spring-cloud-ribbon)
 
-
+## Hystrix - Circuit Breaker
+- Hystrix bietet implmenetierungen von oft eingesetzten "fault-Tolerence" Pattern für Verteilte Systeme wie z.b. Circuit-Breakers und Bulkheads
+- Ist eine Bibliothek die zur Kontrolle der Kommunikation zwischen verteilten Services dient.
+- Hystrix wurde entworfen für:
+  - Bietet Schutz und Kontrolle über Latenzzeit und Ausfall bei Aufruf von anderen Services 
+  - Stopt das Fehler tiefer ins System eindringen
+  - Schnelles Fehlschlagen und rasche wiederherstellen
+  - Fallback und kontrolliertes Verhalten
+  - Aktiveren von quasi Echtzeit -Monitoring, -Warningen und Einsatzkontrolle
+- Allgemein
+  - Verteilte Anwendungen haben oft viele Abhängigkeiten. Jeder dieser Abhängigkeiten kann zu jeder Zeit ausfallen. Die Host-Anwendung sollte vor diesen Risiken geschützt sein. 
 
