@@ -65,6 +65,7 @@ public class MyClass {
   
 ### Hystrix einbinden - [How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)
 1. Dependency hinzufügen
+
   ```
   <dependency>
       <groupId>com.netflix.hystrix</groupId>
@@ -72,8 +73,10 @@ public class MyClass {
       <version>x.y.z</version>
   </dependency>
   ```
+  
 2. Hystrix Circuit Breaker aktivieren mit **@EnableCircuitBreaker** an die Spring Boot Anwendung
 3. Methode die Hystrix verwalten soll anootieren mit **@HystrixCommand** und dort die Fallback Methode angeben
+
   ```
    @HystrixCommand(fallbackMethod = "defaultUser")
     public ResponseEntity<List<Message>> getUser(int userId) {
