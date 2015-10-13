@@ -3,6 +3,8 @@ package com.seitenbau.microservices.composite.mailbox.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -10,18 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.DiscoveryClient;
 import com.seitenbau.microservices.core.document.model.Document;
 import com.seitenbau.microservices.core.message.model.Message;
 import com.seitenbau.microservices.core.user.model.User;
 
-/**
- * TODO implement generic method
- * 
- * @author truprecht
- *
- */
 
 // The @Component annotation marks a java class as a bean so the
 // component-scanning mechanism
@@ -29,9 +23,8 @@ import com.seitenbau.microservices.core.user.model.User;
 @Component
 public class MailboxIntegration {
 
-	// discovery client, to get service URL
 	@Autowired
-	private DiscoveryClient discoveryClient;
+	private LoadBalancerClient loadBalancer;
 
 	private RestTemplate restTemplate;
 
@@ -103,11 +96,10 @@ public class MailboxIntegration {
 
 	private String getRequestUrl(String serviceId, String requestURI) {
 		// get service URL for message-service
-		InstanceInfo instance = discoveryClient.getNextServerFromEureka(
-				serviceId, false);
+		ServiceInstance instance = loadBalancer.choose(serviceId);
 
 		// build request URL
-		return instance.getHomePageUrl() + requestURI;
+		return instance.getUri() + requestURI;
 	}
 
 	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
