@@ -2,6 +2,8 @@ package com.seitenbau.microservices.composite.mailbox.service;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -16,7 +18,6 @@ import com.seitenbau.microservices.core.document.model.Document;
 import com.seitenbau.microservices.core.message.model.Message;
 import com.seitenbau.microservices.core.user.model.User;
 
-
 // The @Component annotation marks a java class as a bean so the
 // component-scanning mechanism
 // of spring can pick it up and pull it into the application context
@@ -27,6 +28,11 @@ public class MailboxIntegration {
 	private LoadBalancerClient loadBalancer;
 
 	private RestTemplate restTemplate;
+
+	@PostConstruct
+	private void init() {
+		this.restTemplate = new RestTemplate();
+	}
 
 	/**
 	 * Call message-service to get all messages with specific user id
@@ -67,11 +73,8 @@ public class MailboxIntegration {
 			ParameterizedTypeReference<T> parameterizedTypeReference) {
 		try {
 			String url = getRequestUrl(serviceId, requestURI);
-
-			restTemplate = new RestTemplate();
-			ResponseEntity<T> responseList = restTemplate.exchange(url,
-					HttpMethod.GET, null, parameterizedTypeReference);
-			return responseList;
+			return restTemplate.exchange(url, HttpMethod.GET, null,
+					parameterizedTypeReference);
 		} catch (Exception e) {
 			System.out.println(e);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
@@ -82,9 +85,7 @@ public class MailboxIntegration {
 			String requestURI, Class<T> type) {
 		try {
 			String getUserURL = getRequestUrl(serviceId, requestURI);
-
 			// get user information
-			restTemplate = new RestTemplate();
 			T obj = restTemplate.getForObject(getUserURL, type);
 
 			return createResponse(obj, HttpStatus.OK);
