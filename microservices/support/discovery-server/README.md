@@ -20,9 +20,8 @@ TODO:
 	- Mit dieser liste können die Clients Load Balancing durchführen -> Ribbon kann verwendet werden 
 - Die Kombination von 2 Caches macht den Server ziemlich Ausfall sicher, solange es eine instanz gibt, die überwacht, dass der Server wieder gestartet wird
 - Noch stabiler/verfübarer wird Eureka, wenn mehrere Instanzen gestartet werden und diese sich gegenseitig registrieren.
-	- dazu muss die *serviceUrl* zum anderen Server zeigen	
+	- dazu muss die *serviceUrl* zum anderen Server zeigen
 - [Server-Client-Kommunikation verstehen](https://github.com/Netflix/eureka/wiki/Understanding-eureka-client-server-communication)
-
 - Clients:
 	- Name der Klients wird als  ```spring.application.name``` property in der bootstrap Datei festgelegt
 	- ```org.springframework.cloud:spring-cloud-starter-eureka``` Dependency hinzufügen
