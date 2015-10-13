@@ -2,11 +2,14 @@ package com.seitenbau.microservices.core.message.model;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.Data;
 
 @Data
 public class Message {
 
+	@Id
 	private String messageId;
 	private String toId;
 	private String fromId;
@@ -17,9 +20,8 @@ public class Message {
 	public Message() {
 	}
 
-	public Message(String messageId, String toId, String fromId,
-			String message, String subject, List<String> attachmentIds) {
-		this.messageId = messageId;
+	public Message(String toId, String fromId, String message, String subject,
+			List<String> attachmentIds) {
 		this.toId = toId;
 		this.fromId = fromId;
 		this.message = message;
