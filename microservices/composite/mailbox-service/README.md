@@ -57,4 +57,26 @@ public class MyClass {
   - Aktiveren von quasi Echtzeit -Monitoring, -Warningen und Einsatzkontrolle
 - Allgemein
   - Verteilte Anwendungen haben oft viele Abhängigkeiten. Jeder dieser Abhängigkeiten kann zu jeder Zeit ausfallen. Die Host-Anwendung sollte vor diesen Risiken geschützt sein. 
-
+- Hystrix verwendet Isolations-Techniken wie z.B. (um die Auswirkungen von Abhängigkeiten zu verhindern/minimieren)
+  - Buklhead:
+  - Swimlane
+  - Circuit-Breaker
+  - 
+  
+### Hystrix einbinden - [How-To-Use](https://github.com/Netflix/Hystrix/wiki/How-To-Use)
+1. Dependency hinzufügen
+  ```
+  <dependency>
+      <groupId>com.netflix.hystrix</groupId>
+      <artifactId>hystrix-core</artifactId>
+      <version>x.y.z</version>
+  </dependency>
+  ```
+2. Hystrix Circuit Breaker aktivieren mit **@EnableCircuitBreaker** an die Spring Boot Anwendung
+3. Methode die Hystrix verwalten soll anootieren mit **@HystrixCommand** und dort die Fallback Methode angeben
+  ```
+   @HystrixCommand(fallbackMethod = "defaultUser")
+    public ResponseEntity<List<Message>> getUser(int userId) {
+        ...
+    }
+  ```
