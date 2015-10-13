@@ -70,9 +70,7 @@ public class MailboxIntegration {
 	 * @return
 	 */
 	public ResponseEntity<User> defaultUsers(String userId) {
-		System.out.println("fallback");
-		return createResponse(new User(userId, "fallbackUser",
-				"fallbackLastname"), HttpStatus.BAD_GATEWAY);
+		return createResponse(null, HttpStatus.BAD_GATEWAY);
 	}
 
 	/**
