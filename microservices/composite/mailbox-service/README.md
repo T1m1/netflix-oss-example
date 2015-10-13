@@ -28,7 +28,7 @@ Liefert alle Nachrichten eines bestimmten Benutzers inkluse der Informationen ü
 - Es besteht eine große Auswahl an Konfigurationsmöglichkeiten
 
 ### Ribbon API verwenden 
-1. Dependency **spring-cloud-starter-ribbon** hinzufügen
+1. Dependency **org.springframework.cloud:spring-cloud-starter-ribbon** hinzufügen
 2. Autowire *LoadBalancerClient* & Service mit Hilfe der *choose* Methode wählen
 ```
 public class MyClass {
