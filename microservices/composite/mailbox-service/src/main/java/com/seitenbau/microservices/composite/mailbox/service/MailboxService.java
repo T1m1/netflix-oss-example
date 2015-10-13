@@ -37,8 +37,8 @@ public class MailboxService {
 	 * @param userId
 	 * @return list with all mails
 	 */
-	@RequestMapping("/mailboxes/{userId}")
-	public ResponseEntity<List<MailboxEntry>> getMailbox(
+	@RequestMapping("/inbox/{userId}")
+	public ResponseEntity<List<MailboxEntry>> getInboxOfUser(
 			@PathVariable String userId) {
 
 		// 1. get all messages of user with userId

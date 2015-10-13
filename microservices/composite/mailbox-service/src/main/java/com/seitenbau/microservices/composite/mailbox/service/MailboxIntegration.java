@@ -42,7 +42,7 @@ public class MailboxIntegration {
 	 * @return all message of user with userId
 	 */
 	public ResponseEntity<List<Message>> getMessagesSentToUser(String userId) {
-		return getResponseAsList("message-service", "/messages/" + userId,
+		return getResponseAsList("message-service", "/inbox/" + userId,
 				new ParameterizedTypeReference<List<Message>>() {
 				});
 	}
