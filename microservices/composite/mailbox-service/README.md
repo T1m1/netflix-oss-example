@@ -26,6 +26,8 @@ Liefert alle Nachrichten eines bestimmten Benutzers inkluse der Informationen ü
 - Spring Cloud erstellt für jeden "Named" Klient ein neues Ensemble als einen *ApplicationContext*. Dazu wird die *RibbonClientConfiguration* verwendet
   - Diese beinhaltet einen *ILoadBalancer*, einen *RestClient* und einen *ServerListFilter*
 - Es besteht eine große Auswahl an Konfigurationsmöglichkeiten
+- Vorgehensweise:
+  - Der Klient holt sich eine Liste aller verfügbaren Service-Instanzen und kann daraufhin mit Hilfe von Ribbon Load-Balancing durchführen
 
 ### Ribbon API verwenden 
 1. Dependency **org.springframework.cloud:spring-cloud-starter-ribbon** hinzufügen
