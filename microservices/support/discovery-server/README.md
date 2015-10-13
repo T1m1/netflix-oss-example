@@ -17,15 +17,18 @@ TODO:
 - ...
 - Der Eureka Server hat keine Backend Speicher in dem er die Informationen über alle Services speichert Alle Instanzen senden in regelmäßigen abständen (per default: 30 Sekunden) "Lebenszeichen", sogenannte "heartbeats". Die Liste aller laufenden instanzen kann im Speicher gehalten werden.
 - Clients besitzen ebenfalls eine Kopie einer Liste aller Services im Cache. => Deshalb müssen sie nicht für jeden Request die Registry anfragen
+	- Mit dieser liste können die Clients Load Balancing durchführen -> Ribbon kann verwendet werden 
 - Die Kombination von 2 Caches macht den Server ziemlich Ausfall sicher, solange es eine instanz gibt, die überwacht, dass der Server wieder gestartet wird
 - Noch stabiler/verfübarer wird Eureka, wenn mehrere Instanzen gestartet werden und diese sich gegenseitig registrieren.
 	- dazu muss die *serviceUrl* zum anderen Server zeigen	
+- [Server-Client-Kommunikation verstehen](https://github.com/Netflix/eureka/wiki/Understanding-eureka-client-server-communication)
 
 - Clients:
 	- Name der Klients wird als  ```spring.application.name``` property in der bootstrap Datei festgelegt
 	- ```org.springframework.cloud:spring-cloud-starter-eureka``` Dependency hinzufügen
 	- @EnableEurekaClient an die Klasse mit der main-Methode -> Verifizieren
-	
+
+
 ## Implementierung
 
 1. Spring Boot Template Application erstellen
