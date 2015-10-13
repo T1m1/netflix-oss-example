@@ -75,11 +75,15 @@ public class MyClass {
   ```
   
 2. Hystrix Circuit Breaker aktivieren mit **@EnableCircuitBreaker** an die Spring Boot Anwendung
-3. Methode die Hystrix verwalten soll anootieren mit **@HystrixCommand** und dort die Fallback Methode angeben
+3. Methode die Hystrix verwalten soll anotieren mit **@HystrixCommand** und dort die Fallback Methode angeben. Diese implementieren..
 
   ```
    @HystrixCommand(fallbackMethod = "defaultUser")
     public ResponseEntity<List<Message>> getUser(int userId) {
+        ...
+    }
+    
+    public ResponseEntity<List<Message>> defaultUser(int userId) {
         ...
     }
   ```
