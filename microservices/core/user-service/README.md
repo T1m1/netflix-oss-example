@@ -2,11 +2,8 @@
 - Benutzerverwaltung
 
 ## Verwaltung
-- Starten: ``` mvn spring-boot:run``` oder ```start.bat```
-
-## TODO
-- Datenbankanbindung
-- HealtCheck Methoden
+- MongoDB-Server auf Port 1001 starten und Service mit ``` mvn spring-boot:run``` ausführen
+- oder ```start.bat``` aufrufen
 
 ## Dokumentation
 - Konfigurationsdateien
@@ -154,4 +151,58 @@
 			    }
 			}	
 		```
+
+
+## MongoDB
+1. Hinzufügen der MongoDB Dependency
+
+	```
+		<!-- mongodb -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+	```
+
+2. In der **application.yml** host und port der monogodb angeben
+
+	```
+	spring:
+	  data:
+	    mongodb:
+	      host: localhost
+	      port: 1001
+	```
+
+3. **@Id** Annotation an die ID der Bean setzen
+
+	```
+		@Id private String userId;
+	```
+	
+4. Repository Klasse erstellen - optional mit von MongoDB vordefinierten Suchfunktionen. Hier wird ein automatisches Mapping an User erstellt. CRUD Funktionen sind mit der Route /user möglich. Möchte man einen anderen Pfad verwenden, kann man dies mit: *@RepositoryRestResource(collectionResourceRel = "benutzer", path = "benutzer")* einstellen
+	```
+	public interface CustomRepository extends MongoRepository<User, String> {
+	
+		public User findByFirstName(String firstName);
+	
+	}
+	```
+5. Jetzt kann zusätzlich zu den CRUD & Suchfunktionen auch eigene Methoden in der Applikationsklasse erstellt werden. Dazu muss das Repository injected werden.
+
+```
+	@Autowired
+	private CustomRepository repository;
+	
+	@RequestMapping(value = "/test/{testname}", method = RequestMethod.POST)
+	public void testDB(@PathVariable String testname) {
+		repository.save(new User(testname, testname));
+		for (User user : repository.findAll()) {
+			System.out.println(user.getFirstName() + " " + user.getLastName());
+		}
 		
+		System.out.println("Find user with name: " + testname);
+		System.out.println(repository.findByFirstName(testname));
+		
+	}
+```
