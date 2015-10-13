@@ -5,7 +5,8 @@
 2. Discovery-Server (Eureka-Server) erstellen, siehe [hier](https://github.com/T1m1/bachelor-project/blob/master/microservices/support/discovery-server/README.md) 
 3. Core-Services am Discovery-Service anmelden lassen
 4. Routing mit [Zuul](https://github.com/T1m1/bachelor-project/tree/master/microservices/support/edge-server/README.md)
-5. 
+5. Load-Balancing mit Ribbon
+6. Circuit Breaker mit Hystrix
 
 
 
