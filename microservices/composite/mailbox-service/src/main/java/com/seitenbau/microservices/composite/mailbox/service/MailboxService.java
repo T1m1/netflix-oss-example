@@ -50,24 +50,43 @@ public class MailboxService {
 			return createResponse(null, messages.getStatusCode());
 		}
 
-		// 2. generate unique list with users
-		Set<String> userIds = new LinkedHashSet<>();
+		Set<String> userIds = getAllUserIDs(messages);
+		Set<String> documentIds = getAllDocumentIDs(messages);
+		HashMap<String, User> allUser = getAllUser(userIds);
+		HashMap<String, Document> allDocuments = getAllDocuments(documentIds);
+
+		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
+				messages.getBody(), allUser, allDocuments);
+
+		return createResponse(mailboxEntries, messages.getStatusCode());
+	}
+
+	private Set<String> getAllDocumentIDs(ResponseEntity<List<Message>> messages) {
 		// generate unique list with documents
 		Set<String> documentIds = new LinkedHashSet<>();
-
-		// add IDs of receiver
-		userIds.add(messages.getBody().get(0).getToId());
-		// add IDs of sender
 		for (Message msg : messages.getBody()) {
-			userIds.add(msg.getFromId());
 			// add IDs of all attachments
 			for (String attachmentId : msg.getAttachmentIds()) {
 				documentIds.add(attachmentId);
 			}
 		}
+		return documentIds;
+	}
 
+	private Set<String> getAllUserIDs(ResponseEntity<List<Message>> messages) {
+		// 2. generate unique list with users
+		Set<String> userIds = new LinkedHashSet<>();
+		// add IDs of receiver
+		userIds.add(messages.getBody().get(0).getToId());
+		// add IDs of sender
+		for (Message msg : messages.getBody()) {
+			userIds.add(msg.getFromId());
+		}
+		return userIds;
+	}
+
+	private HashMap<String, User> getAllUser(Set<String> userIds) {
 		HashMap<String, User> allUser = new HashMap<String, User>();
-		HashMap<String, Document> allDocuments = new HashMap<String, Document>();
 
 		// TODO RXJava - asynchrony
 		for (String id : userIds) {
@@ -76,6 +95,11 @@ public class MailboxService {
 				allUser.put(id, user.getBody());
 			}
 		}
+		return allUser;
+	}
+
+	private HashMap<String, Document> getAllDocuments(Set<String> documentIds) {
+		HashMap<String, Document> allDocuments = new HashMap<String, Document>();
 
 		for (String id : documentIds) {
 			ResponseEntity<Document> document = mailboxIntegration
@@ -84,13 +108,7 @@ public class MailboxService {
 				allDocuments.put(id, document.getBody());
 			}
 		}
-
-		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
-				messages.getBody(), allUser, allDocuments);
-
-		// TODO get documents
-
-		return createResponse(mailboxEntries, messages.getStatusCode());
+		return allDocuments;
 	}
 
 	/**
