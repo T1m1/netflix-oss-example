@@ -31,3 +31,6 @@ start /D "microservices/core/message-service" mvn spring-boot:run
 start /D "microservices/composite/mailbox-service" mvn spring-boot:run
 
 
+:: start web UI
+start /D "web" node server.js
+
