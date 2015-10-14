@@ -13,7 +13,7 @@ import com.seitenbau.microservices.core.message.MessageRepository;
 import com.seitenbau.microservices.core.message.model.Message;
 
 @RestController
-@RequestMapping("messages")
+@RequestMapping("/messages")
 public class MessageService {
 
 	@Autowired
@@ -34,12 +34,12 @@ public class MessageService {
 		return repository.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public void create(Message message) {
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public void create(@RequestBody Message message) {
 		repository.save(message);
 	}
 
-	@RequestMapping(value = "{messageId}", method = RequestMethod.DELETE, consumes = "application/json")
+	@RequestMapping(value = "{messageId}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable String messageId) {
 		repository.delete(messageId);
 	}

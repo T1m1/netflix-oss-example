@@ -46,7 +46,7 @@ public class MailboxService {
 				.getMessagesSentToUser(userId);
 
 		List<MailboxEntry> mailboxEntries = new ArrayList<MailboxEntry>();
-		
+
 		// return empty list if no messages found or any error
 		if (!messages.getStatusCode().is2xxSuccessful()
 				|| messages.getBody().isEmpty()) {
@@ -67,12 +67,16 @@ public class MailboxService {
 	private Set<String> getAllDocumentIDs(ResponseEntity<List<Message>> messages) {
 		// generate unique list with documents
 		Set<String> documentIds = new LinkedHashSet<>();
-		for (Message msg : messages.getBody()) {
-			// add IDs of all attachments
-			for (String attachmentId : msg.getAttachmentIds()) {
-				documentIds.add(attachmentId);
+		
+			for (Message msg : messages.getBody()) {
+				// add IDs of all attachments
+			if (null != documentIds) {
+				for (String attachmentId : msg.getAttachmentIds()) {
+					documentIds.add(attachmentId);
+				}
 			}
 		}
+
 		return documentIds;
 	}
 
