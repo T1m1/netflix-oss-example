@@ -49,4 +49,9 @@ public class UserService {
 		return repository.save(update);
 	}
 
+	@RequestMapping(method = RequestMethod.POST)
+	public User create(@RequestBody User user) {
+		return repository.save(user);
+	}
+
 }
