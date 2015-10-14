@@ -1,0 +1,36 @@
+	
+	<div class="btn-group" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{selected || 'Posteingang von'}}
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+		<li class="dropdown-header" ng-show="selected">Posteingang von</li>
+      <li  ng-repeat="n in user track by $index">
+		<a href="#" ng-click="selectUser(n)">{{n.firstName}} {{n.lastName}}</a>
+	  </li>
+    </ul>
+  </div>
+</div>
+
+
+<table class="table" ng-if="messages">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sender</th>
+          <th>Betreff</th>
+		  <th>Nachricht</th>
+        </tr>
+      </thead>
+      <tbody>
+	  <tr ng-repeat="m in messages track by $index">
+	  <th scope="row">{{$index}}</th>
+		<td>	{{m.userFrom.firstName + ' ' + m.userFrom.lastName}} </td>
+		<td>	{{m.subject}} </td>
+		<td>	{{m.message}} </td>
+	
+      </tbody>
+    </table>
+	

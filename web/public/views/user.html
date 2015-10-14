@@ -1,0 +1,24 @@
+<table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>userID</th>
+          <th>firstName</th>
+          <th>lastName</th>
+        </tr>
+      </thead>
+      <tbody>
+	  <tr ng-repeat="n in user track by $index">
+		<th scope="row">{{$index}}</th>
+			<td>{{n.userId}}</td>
+			<td>{{n.firstName}}</td>
+			<td>{{n.lastName}}</td>
+		</tr>
+      </tbody>
+    </table>
+	
+	
+
+
+
+	
