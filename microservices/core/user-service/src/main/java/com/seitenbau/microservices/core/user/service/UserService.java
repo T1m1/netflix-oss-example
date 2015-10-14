@@ -41,7 +41,7 @@ public class UserService {
 		repository.delete(userId);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "{userId}")
+	@RequestMapping(method = RequestMethod.PUT, value = "{userId}", consumes = "application/json")
 	public User update(@PathVariable String userId, @RequestBody User user) {
 		User update = repository.findOne(userId);
 		update.setFirstName(user.getFirstName());
@@ -49,7 +49,7 @@ public class UserService {
 		return repository.save(update);
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public User create(@RequestBody User user) {
 		return repository.save(user);
 	}
