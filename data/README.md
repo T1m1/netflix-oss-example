@@ -1,5 +1,5 @@
 # Mongo Datenbank
-Um Daten expotieren oder impotieren zu können, müssen die Datenbanken auf den Vorgegebenen Ports (1001,1002,1003) laufen. Dazu kann das *startAll.bat* Skript ausgeführt werden.
+Um Daten expotieren oder impotieren zu kÃ¶nnen, mÃ¼ssen die Datenbanken auf den vorgegebenen Ports (1001,1002,1003) laufen. Dazu kann das *startAll.bat* Skript ausgefÃ¼hrt werden.
 
 
 
