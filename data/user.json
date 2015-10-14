@@ -1,0 +1,4 @@
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561d040ae8069ba03e6574bb"},"firstName":"Timi","lastName":"Ruprecht"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04a6e806d13f18c6c7d6"},"firstName":"Sandra","lastName":"Stahl"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04afe806d13f18c6c7d7"},"firstName":"Max","lastName":"Mustermann"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04b7e806d13f18c6c7d8"},"firstName":"John","lastName":"Doe"}
