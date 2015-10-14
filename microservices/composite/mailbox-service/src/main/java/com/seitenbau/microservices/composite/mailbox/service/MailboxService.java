@@ -45,9 +45,12 @@ public class MailboxService {
 		ResponseEntity<List<Message>> messages = mailboxIntegration
 				.getMessagesSentToUser(userId);
 
-		// return empty list if no messages found
-		if (!messages.getStatusCode().is2xxSuccessful()) {
-			return createResponse(null, messages.getStatusCode());
+		List<MailboxEntry> mailboxEntries = new ArrayList<MailboxEntry>();
+		
+		// return empty list if no messages found or any error
+		if (!messages.getStatusCode().is2xxSuccessful()
+				|| messages.getBody().isEmpty()) {
+			return createResponse(mailboxEntries, messages.getStatusCode());
 		}
 
 		Set<String> userIds = getAllUserIDs(messages);
@@ -55,8 +58,8 @@ public class MailboxService {
 		HashMap<String, User> allUser = getAllUser(userIds);
 		HashMap<String, Document> allDocuments = getAllDocuments(documentIds);
 
-		List<MailboxEntry> mailboxEntries = buildMailboxEntries(
-				messages.getBody(), allUser, allDocuments);
+		mailboxEntries = buildMailboxEntries(messages.getBody(), allUser,
+				allDocuments);
 
 		return createResponse(mailboxEntries, messages.getStatusCode());
 	}
@@ -85,7 +88,7 @@ public class MailboxService {
 		return userIds;
 	}
 
-	// TODO generic method call 
+	// TODO generic method call
 	private HashMap<String, User> getAllUser(Set<String> userIds) {
 		HashMap<String, User> allUser = new HashMap<String, User>();
 
