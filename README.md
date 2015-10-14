@@ -8,6 +8,9 @@
 - Spring-Tool-Suite 3.6.4
 - MongoDB 3.0
 
+#### WebUI
+- Node v4.2.1
+- Bower1.5.3
 
 ### Service-Landschaft
 - 3 Core Services
