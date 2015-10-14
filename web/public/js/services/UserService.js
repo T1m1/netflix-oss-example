@@ -14,8 +14,8 @@ angular.module('UserService', []).factory('User', ['$http', function($http) {
 
         // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new nerd
-        create : function(nerdData) {
-            return $http.post('/api/nerds', nerdData);
+        createUser : function(user) {
+            return $http.post('http://p-raclettus:1111/apiv1/user-service/users', user);
         },
 
         // call to DELETE a nerd
