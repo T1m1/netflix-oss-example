@@ -21,6 +21,7 @@ start /D "C:/" mongod --dbpath %MONGO_DB_PATH_DOCUMENT% --port %MONGO_DB_PORT_DO
 :: support
 start /D "microservices/support/discovery-server" mvn spring-boot:run
 start /D "microservices/support/edge-server" mvn spring-boot:run
+start /D "microservices/support/dashboard-service" mvn spring-boot:run
 
 :: core
 start /D "microservices/core/user-service" mvn spring-boot:run
