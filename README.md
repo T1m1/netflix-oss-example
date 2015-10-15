@@ -30,6 +30,8 @@
 4. Routing mit [Zuul](https://github.com/T1m1/bachelor-project/tree/master/microservices/support/edge-server/README.md)
 5. Load-Balancing mit [Ribbon](https://github.com/T1m1/bachelor-project/tree/master/microservices/composite/mailbox-service#ribbon---client-side-load-balancer)
 6. Circuit Breaker mit [Hystrix](https://github.com/T1m1/bachelor-project/tree/master/microservices/composite/mailbox-service#hystrix---circuit-breaker)
+7. Hystrix [Dashboard] (https://github.com/T1m1/bachelor-project/tree/master/microservices/support/dashboard-service)
+8. [WebUI] (https://github.com/T1m1/bachelor-project/tree/master/web)
 
 
 
