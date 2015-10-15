@@ -63,7 +63,7 @@ Dashboard - [lokal](http://localhost:8761/)
 		      waitTimeInMsWhenSyncEmpty: 0
 		```
 
-## 2 oder mehrere Instanzen vom Eureka Server aufsetzen (& auf selber Lokalen Maschine laufen lassen)
+### Zwei oder mehrere Instanzen vom Eureka Server aufsetzen (& auf selber Lokalen Maschine laufen lassen)
 
 - Zuerst muss die Konfiguration im Eureka Server angepasst werden:
 	- Es müssen verschiedene Spring Profile erstellt werden
