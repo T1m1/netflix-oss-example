@@ -2,7 +2,6 @@ info:
   component: Zuul Server
 
 zuul:
-  ignoredServices: "message-service"
   prefix: /apiv1
   
 server:
