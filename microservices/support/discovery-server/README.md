@@ -102,3 +102,14 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 ```
 
+#### Klient-Seitige Konfiguration:
+**TODO** *weitere Informationen (Best-Practice, reigenfolge der Kommunikation, ... )*
+Wird nicht dringend benötigt. Die Server tauschen auch untereinander ihre Informationen aus.
+Könnte in einer anderen Zone stehen, somit wäre bei einem Totalausfall einer Servicelandschaft immernoch gewährleistet, dass alle läuft.
+
+```
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka,http://localhost:8762/eureka
+```
