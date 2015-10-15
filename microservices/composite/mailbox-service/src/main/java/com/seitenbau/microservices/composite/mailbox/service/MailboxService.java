@@ -67,10 +67,10 @@ public class MailboxService {
 	private Set<String> getAllDocumentIDs(ResponseEntity<List<Message>> messages) {
 		// generate unique list with documents
 		Set<String> documentIds = new LinkedHashSet<>();
-		
-			for (Message msg : messages.getBody()) {
-				// add IDs of all attachments
-			if (null != documentIds) {
+
+		for (Message msg : messages.getBody()) {
+			// add IDs of all attachments
+			if (null != msg.getAttachmentIds()) {
 				for (String attachmentId : msg.getAttachmentIds()) {
 					documentIds.add(attachmentId);
 				}
