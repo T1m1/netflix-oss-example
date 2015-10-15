@@ -1,23 +1,23 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-	$routeProvider
+    $routeProvider
 
-		// home page
-		.when('/', {
-			templateUrl: 'views/home.html',
-			controller: 'MainController'
-		})
+        // home page
+        .when('/', {
+            templateUrl: 'views/home.html',
+            controller: 'MainController'
+        })
 
-		.when('/user', {
-			templateUrl: 'views/user.html',
-			controller: 'UserController'
-		})
+        .when('/user', {
+            templateUrl: 'views/user.html',
+            controller: 'UserController'
+        })
 
-		.when('/mailbox', {
-			templateUrl: 'views/mailbox.html',
-			controller: 'MailboxController'	
-		});
+        .when('/mailbox', {
+            templateUrl: 'views/mailbox.html',
+            controller: 'MailboxController'
+        });
 
-	$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 
 }]);
