@@ -16,6 +16,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/mailbox', {
             templateUrl: 'views/mailbox.html',
             controller: 'MailboxController'
+        })
+        .
+        when('/message', {
+            templateUrl: 'views/message.html',
+            controller: 'MessageController'
         });
 
     $locationProvider.html5Mode(true);
