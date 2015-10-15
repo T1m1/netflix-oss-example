@@ -2,9 +2,6 @@
 
 Dashboard - [lokal](http://localhost:8761/)
 
-TODO: 
-- Wie mehrere Instanzen des Eureka Servers aufsetzen / verwalten 
-
 ## Dokumentation
 - Service Registration Server (Endeckung, Feststellung, ..) -> Eureka Server
 - Führt Buch über die im Netzwerk verfügbaren Dienste
