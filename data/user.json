@@ -2,3 +2,8 @@
 {"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04a6e806d13f18c6c7d6"},"firstName":"Sandra","lastName":"Stahl"}
 {"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04afe806d13f18c6c7d7"},"firstName":"Max","lastName":"Mustermann"}
 {"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e04b7e806d13f18c6c7d8"},"firstName":"John","lastName":"Doe"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e7786e8069c95203eedd5"},"firstName":"Michael","lastName":"Müller"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e7792e8069c95203eedd6"},"firstName":"Michael","lastName":"Müller"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e7802e8069c95203eedd7"},"firstName":"Maria","lastName":"Maier"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e786ae8069c95203eedd8"},"firstName":"Alex","lastName":"Stein"}
+{"_class":"com.seitenbau.microservices.core.user.model.User","_id":{"$oid":"561e78dce8069c95203eedd9"},"firstName":"asdf","lastName":"asdf"}
