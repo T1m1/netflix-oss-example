@@ -11,7 +11,7 @@ Um den Status der Circuit-Breaker in den Services (Mailbox-Service) zu erhalten,
 
 1. Dependencies hinzufügen **org.springframework.cloud:spring-cloud-starter-hystrix-dashboard** 
 2. Um das Dashboard verwenden zu können muss die Annotation **@EnableHystrixDashboard** an die Applikationsklasse angehängt werden
-3. In der **application.yml** kann ein fixer Port angegeben werden *server:\n  port: 8383
+3. In der **application.yml** kann ein fixer Port angegeben werden *server:\n  port: 8383*
 3. In dem zu beobachtetem Service muss die dependency **org.springframework.boot:spring-boot-starter-actuator** hinzugefügt werden um den Stream zu aktivieren
 
 
