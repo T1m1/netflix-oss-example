@@ -65,3 +65,40 @@ TODO:
 		    server:
 		      waitTimeInMsWhenSyncEmpty: 0
 		```
+
+## 2 oder mehrere Instanzen vom Eureka Server aufsetzen (& auf selber Lokalen Maschine laufen lassen)
+
+- Zuerst muss die Konfiguration im Eureka Server angepasst werden:
+	- Es müssen verschiedene Spring Profile erstellt werden
+	- Wenn die Instanzen lokal laufen gelassen werden, müssen verschiedene Ports festgelegt werden. Ansonsten müssen verschiedene host angegeben werden. Diese sind statisch.
+	- Die defaultZone gibt an, wo der Eureka Server sich registrieren soll -> Beim anderen
+- Danach kann das Projekt lokal gestartet werden. Die verschiedenen Profile werden mit *mvn spring-boot:run -Dspring.prfiles.active="local1"* gestartet (profile anpassen)
+
+Eine Beispiel KonfigurationsDatei vom Server:
+```
+---
+
+spring:
+  profiles: local1
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: local1
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka
+---
+
+spring:
+  profiles: local2
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: local2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+```
+
