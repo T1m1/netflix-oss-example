@@ -5,7 +5,7 @@ Um den Status der Circuit-Breaker in den Services (Mailbox-Service) zu erhalten,
 - Das Dashboard bietet Enwicklern oder anderen die Möglichkeit Statistiken, wie z.B. über erfolgreiche und fehlgeschlagene Anfragen, über die Circuits zu erhalten.
 - Des weiteren bietet Netflix ein weiteres Tool namens Turbine an. Turbine hilft mehrere Streams von Hystrix zu einem zu aggregieren. So muss nicht die ganze Zeit zwischen den instanzen der Services gewechselt werden.
 - Wenn ein Service ausfällt, öffnet sich der Circuit und das wird im Dashboard angezeigt. Je mehr Fehlschlagen desto roter wird die Anzeige
-- 
+
 
 
 
