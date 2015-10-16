@@ -6,9 +6,9 @@ angular.module('MailboxCtrl', []).controller('MailboxController', function ($sco
         Mailbox.getInboxOf(user.userId).then(function success(response) {
             $scope.messages = response.data;
 
-        }), function errorCallback(err) {
+        }).catch(function errorCallback(err) {
             console.log(err);
-        };
+        });
     }
 
 });

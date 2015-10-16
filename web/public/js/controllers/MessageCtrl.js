@@ -13,8 +13,7 @@ angular.module('MessageCtrl', []).controller('MessageController', function ($sco
             $scope.toUser = null;
             $scope.subject = null;
             $scope.message = null;
-            console.log(response)
-
+            console.log(response);
             $scope.info = "Nachricht wurde erfolgreich gesendet!"
         }).catch(function errorCallback(err) {
             console.log(err);
