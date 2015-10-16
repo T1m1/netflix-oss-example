@@ -36,8 +36,7 @@ public class Util {
 	protected <T> ResponseEntity<T> getResponseAsObject(String serviceId,
 			String requestURI, Class<T> type) {
 		try {
-			String getUserURL = getRequestUrl(serviceId, requestURI);
-			T obj = restTemplate.getForObject(getUserURL, type);
+			T obj = getRequestObject(serviceId, requestURI, type);
 
 			return createResponse(obj, HttpStatus.OK);
 		} catch (Exception e) {
@@ -45,6 +44,13 @@ public class Util {
 					serviceId, requestURI);
 			return createResponse(null, HttpStatus.SERVICE_UNAVAILABLE);
 		}
+	}
+
+	protected <T> T getRequestObject(String serviceId, String requestURI,
+			Class<T> type) {
+		String getUserURL = getRequestUrl(serviceId, requestURI);
+		T obj = restTemplate.getForObject(getUserURL, type);
+		return obj;
 	}
 
 	protected <T> ResponseEntity<T> getResponseAsList(String serviceId,

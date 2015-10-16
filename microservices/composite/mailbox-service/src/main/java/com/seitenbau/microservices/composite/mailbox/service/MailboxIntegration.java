@@ -42,8 +42,9 @@ public class MailboxIntegration {
 	 */
 	@HystrixCommand(fallbackMethod = "defaultUsers")
 	public ResponseEntity<User> getUser(String userId) {
-		return util.getResponseAsObject("user-service", "/users/" + userId,
-				User.class);
+		// NOTE ugly method call to demonstrate functionality of hystrixs circuit breaker
+		return util.createResponse(util.getRequestObject("user-service", "/users/" + userId,
+				User.class), HttpStatus.OK);
 	}
 
 	/**
