@@ -1,9 +1,6 @@
-# use any port - dynamic
 server:
   port: 0
 
-# 'leaseRenewalIntervalInSeconds' - beschleunigt den Prozess das ein Services sich beim Eureka anmeldet
-# 'instanceId' fuer die eindeutige identifizierung eines Services - Eureka Dashboard
 eureka:
   client:
     serviceUrl:
