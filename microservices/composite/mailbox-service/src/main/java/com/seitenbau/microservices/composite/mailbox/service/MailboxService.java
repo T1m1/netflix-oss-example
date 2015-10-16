@@ -25,6 +25,9 @@ public class MailboxService {
 	@Autowired
 	MailboxIntegration mailboxIntegration;
 
+	@Autowired
+	Util util;
+
 	@RequestMapping("/info")
 	public String getStatus() {
 		return "{\"timestamp\":\"" + new Date()
@@ -50,7 +53,7 @@ public class MailboxService {
 		// return empty list if no messages found or any error
 		if (!messages.getStatusCode().is2xxSuccessful()
 				|| messages.getBody().isEmpty()) {
-			return createResponse(mailboxEntries, messages.getStatusCode());
+			return util.createResponse(mailboxEntries, messages.getStatusCode());
 		}
 
 		Set<String> userIds = getAllUserIDs(messages);
@@ -61,9 +64,11 @@ public class MailboxService {
 		mailboxEntries = buildMailboxEntries(messages.getBody(), allUser,
 				allDocuments);
 
-		return createResponse(mailboxEntries, messages.getStatusCode());
+		return util.createResponse(mailboxEntries, messages.getStatusCode());
 	}
 
+	
+	
 	private Set<String> getAllDocumentIDs(ResponseEntity<List<Message>> messages) {
 		// generate unique list with documents
 		Set<String> documentIds = new LinkedHashSet<>();
@@ -98,7 +103,9 @@ public class MailboxService {
 
 		// TODO RXJava - asynchrony
 		for (String id : userIds) {
+			
 			ResponseEntity<User> user = mailboxIntegration.getUser(id);
+			
 			if (user.getStatusCode().is2xxSuccessful()) {
 				allUser.put(id, user.getBody());
 			}
@@ -110,8 +117,10 @@ public class MailboxService {
 		HashMap<String, Document> allDocuments = new HashMap<String, Document>();
 
 		for (String id : documentIds) {
+			
 			ResponseEntity<Document> document = mailboxIntegration
 					.getDocument(id);
+			
 			if (document.getStatusCode().is2xxSuccessful()) {
 				allDocuments.put(id, document.getBody());
 			}
@@ -153,8 +162,4 @@ public class MailboxService {
 		return entries;
 	}
 
-	// TODO -> util class
-	private <T> ResponseEntity<T> createResponse(T body, HttpStatus httpStatus) {
-		return new ResponseEntity<>(body, httpStatus);
-	}
 }
