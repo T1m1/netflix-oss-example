@@ -7,5 +7,7 @@ import com.seitenbau.microservices.core.user.model.User;
 public interface UserRepository extends MongoRepository<User, String> {
 
 	public User findByFirstName(String firstName);
+	
+	public User findByLastName(String lastName);
 
 }

@@ -1,6 +1,5 @@
 package com.seitenbau.microservices.core.user.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,28 +19,22 @@ public class UserService {
 	@Autowired
 	private UserRepository repository;
 
-	@RequestMapping("/info")
-	public String getStatus() {
-		return "{\"timestamp\":\"" + new Date()
-				+ "\",\"content\":\"I'm okay ;-)\"}";
-	}
-
-	@RequestMapping(value = "{userId}", method = RequestMethod.GET)
-	public User getUser(@PathVariable String userId) {
-		return repository.findOne(userId);
-	}
-
 	@RequestMapping(method = RequestMethod.GET)
 	public List<User> getAll() {
 		return repository.findAll();
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "{userId}")
-	public void delete(@PathVariable String userId) {
-		repository.delete(userId);
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public User create(@RequestBody User user) {
+		return repository.save(user);
+	}
+	
+	@RequestMapping(value = "{userId}", method = RequestMethod.GET)
+	public User getUser(@PathVariable String userId) {
+		return repository.findOne(userId);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "{userId}", consumes = "application/json")
+	@RequestMapping(value = "{userId}", method = RequestMethod.PUT,  consumes = "application/json")
 	public User update(@PathVariable String userId, @RequestBody User user) {
 		User update = repository.findOne(userId);
 		update.setFirstName(user.getFirstName());
@@ -49,9 +42,8 @@ public class UserService {
 		return repository.save(update);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public User create(@RequestBody User user) {
-		return repository.save(user);
+	@RequestMapping(value="{userId}", method = RequestMethod.DELETE )
+	public void delete(@PathVariable String userId) {
+		repository.delete(userId);
 	}
-
 }
