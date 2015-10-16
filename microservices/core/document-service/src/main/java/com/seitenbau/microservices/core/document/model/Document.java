@@ -14,9 +14,4 @@ public class Document {
 	public Document() {
 
 	}
-
-	public Document(String documentId, String name) {
-		this.documentId = documentId;
-		this.name = name;
-	}
 }
