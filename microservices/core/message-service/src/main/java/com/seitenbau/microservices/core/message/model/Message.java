@@ -19,13 +19,4 @@ public class Message {
 
 	public Message() {
 	}
-
-	public Message(String toId, String fromId, String message, String subject,
-			List<String> attachmentIds) {
-		this.toId = toId;
-		this.fromId = fromId;
-		this.message = message;
-		this.subject = subject;
-		this.attachmentIds = attachmentIds;
-	}
 }

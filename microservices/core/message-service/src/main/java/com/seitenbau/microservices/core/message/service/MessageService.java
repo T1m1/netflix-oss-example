@@ -18,6 +18,16 @@ public class MessageService {
 
 	@Autowired
 	private MessageRepository repository;
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public void create(@RequestBody Message message) {
+		repository.save(message);
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Message> getAllMessages() {
+		return repository.findAll();
+	}
 
 	@RequestMapping(value = "/outbox/{userId}", method = RequestMethod.GET, produces = "application/json")
 	public List<Message> getOutboxFromUser(@PathVariable String userId) {
@@ -27,21 +37,6 @@ public class MessageService {
 	@RequestMapping(value = "/inbox/{userId}", method = RequestMethod.GET, produces = "application/json")
 	public List<Message> getInboxFromUser(@PathVariable String userId) {
 		return repository.findByToId(userId);
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Message> getAllMessages() {
-		return repository.findAll();
-	}
-
-	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public void create(@RequestBody Message message) {
-		repository.save(message);
-	}
-
-	@RequestMapping(value = "{messageId}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String messageId) {
-		repository.delete(messageId);
 	}
 
 	@RequestMapping(value = "{messageId}", method = RequestMethod.PUT, consumes = "application/json")
@@ -55,5 +50,9 @@ public class MessageService {
 		update.setAttachmentIds(message.getAttachmentIds());
 		return repository.save(update);
 	}
-
+	
+	@RequestMapping(value = "{messageId}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String messageId) {
+		repository.delete(messageId);
+	}
 }
