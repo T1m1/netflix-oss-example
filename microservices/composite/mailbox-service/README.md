@@ -67,6 +67,10 @@ Wenn ein Service keine Response gibt (Timeout oder Kommunikationserror). Kann Hy
 ### Hystrix einbinden 
 1. Dependency hinzufügen
 
+### Hystrix Stream auf Dashboard anschauen
+1. http://localhost:8383/hystrix öffnen
+2. http://host-zu-mailbox-servce:port/hystrix.stream eingeben
+
   ```
  <dependency>
 			<groupId>org.springframework.cloud</groupId>
