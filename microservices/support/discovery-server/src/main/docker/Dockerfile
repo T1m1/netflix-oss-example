@@ -6,4 +6,4 @@ RUN bash -c 'touch /app.jar'
 
 EXPOSE 8761
 
-ENTRYPOINT ["java","-Dspring.profiles.active=docker","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
