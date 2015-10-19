@@ -1,3 +1,9 @@
+discovery:
+  image: t1m1/discovery-server
+  restart: always
+  ports:
+    - "8761:8761"
+
 mongo-user:
   image: mongo:3.0
   ports:
@@ -23,15 +29,18 @@ user:
     - "8080:8080"
   links:
     - mongo-user
+    - discovery
 
 message:
   image: t1m1/message
   restart: always
   links:
     - mongo-message
+    - discovery
 
 document:
   image: t1m1/document
   restart: always
   links:
     - mongo-document
+    - discovery
