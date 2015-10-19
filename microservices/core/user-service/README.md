@@ -207,3 +207,34 @@
 	}
 ```
 [quelle](https://spring.io/guides/gs/accessing-data-mongodb/)
+
+## Docker einbinden
+
+- Dependency zum Docker-Maven Plugin von Spotify hinzufügen
+- Dazu wird noch die Property *docker.image.prefix* im Maven POM benötigt
+- Bsp:
+	```
+	<properties>
+		<docker.image.prefix>t1m1</docker.image.prefix>
+	</properties>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.2.3</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	```
