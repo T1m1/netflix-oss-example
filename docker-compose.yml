@@ -58,3 +58,11 @@ dashboard:
     - "8383:8383"
   links:
     - mailbox
+
+edge:
+  image: t1m1/edge-server
+  restart: always
+  ports:
+    - "1111:1111"
+  links:
+    - discovery
