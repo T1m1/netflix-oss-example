@@ -10,6 +10,12 @@ mongo-message:
     - "1002:27017"
   restart: always
   
+mongo-document:
+  image: mongo:3.0
+  ports:
+    - "1003:27017"
+  restart: always
+  
 user:
   image: t1m1/user
   restart: always
@@ -21,8 +27,11 @@ user:
 message:
   image: t1m1/message
   restart: always
-  ports:
-    - "8081:8080"
   links:
     - mongo-message
 
+document:
+  image: t1m1/document
+  restart: always
+  links:
+    - mongo-document
