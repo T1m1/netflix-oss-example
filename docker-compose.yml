@@ -1,0 +1,28 @@
+mongo-user:
+  image: mongo:3.0
+  ports:
+    - "1001:27017"
+  restart: always
+
+mongo-message:
+  image: mongo:3.0
+  ports:
+    - "1002:27017"
+  restart: always
+  
+user:
+  image: t1m1/user
+  restart: always
+  ports:
+    - "8080:8080"
+  links:
+    - mongo-user
+
+message:
+  image: t1m1/message
+  restart: always
+  ports:
+    - "8081:8080"
+  links:
+    - mongo-message
+
