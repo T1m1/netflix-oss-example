@@ -50,3 +50,11 @@ mailbox:
     - "8080:8080"
   links:
     - discovery
+
+dashboard:
+  image: t1m1/dashboard
+  restart: always
+  ports:
+    - "8383:8383"
+  links:
+    - mailbox
