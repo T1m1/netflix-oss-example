@@ -6,18 +6,21 @@ discovery:
 
 mongo-user:
   image: mongo:3.0
+  command: "--smallfiles"
   ports:
     - "1001:27017"
   restart: always
 
 mongo-message:
   image: mongo:3.0
+  command: "--smallfiles"
   ports:
     - "1002:27017"
   restart: always
   
 mongo-document:
   image: mongo:3.0
+  command: "--smallfiles"
   ports:
     - "1003:27017"
   restart: always
@@ -46,8 +49,6 @@ document:
 mailbox:
   image: t1m1/mailbox
   restart: always
-  ports:
-    - "8080:8080"
   links:
     - discovery
 
@@ -66,3 +67,11 @@ edge:
     - "1111:1111"
   links:
     - discovery
+
+web:
+  image: t1m1/web
+  restart: always
+  ports:
+    - "8080:8080"
+  links:
+    - edge

@@ -1,4 +1,11 @@
-angular.module('MessageCtrl', []).controller('MessageController', function ($scope, Message) {
+angular.module('MessageCtrl', []).controller('MessageController', function ($scope, Message, User) {
+
+    User.getAllUser().then(function test(response) {
+        console.log(response);
+        $scope.user = response.data;
+    }).catch(function errorCallback(err) {
+        console.log(err);
+    });
 
     $scope.sendMessage = function () {
         var msg = {

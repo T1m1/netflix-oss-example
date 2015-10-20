@@ -25,4 +25,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
     $locationProvider.html5Mode(true);
 
-}]);
+}]).run(function ($http, $rootScope) {
+    $rootScope.host = 'localhost';
+
+    $http.get('/hostname').success(function (host) {
+        $rootScope.host = host.host;
+    });
+
+});
