@@ -8,7 +8,6 @@ angular.module('UserCtrl', []).controller('UserController', function ($scope, Us
     });
 
     $scope.createUser = function (val) {
-        debugger;
         User.createUser(val).then(function (response) {
             console.log('user created');
             $('#myModal').modal('toggle')
