@@ -18,3 +18,23 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+  data:
+    mongodb:
+      host: mongo-user
+      port: 27017
+
+server:
+  port: 8080
+        
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/

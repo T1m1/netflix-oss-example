@@ -6,3 +6,19 @@ zuul:
   
 server:
   port: 1111
+
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+server:
+  port: 1111
+        
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
