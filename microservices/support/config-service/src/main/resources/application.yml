@@ -1,0 +1,32 @@
+server:
+  port: 8888
+
+management:
+  context-path: /admin
+  
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /admin/info
+    healthCheckUrlPath: /admin/health
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/T1m1/config-repo
+          basedir: target/config
+
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+eureka:
+  instance:
+    hostname: monitor
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
