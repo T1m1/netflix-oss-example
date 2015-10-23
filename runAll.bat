@@ -18,7 +18,9 @@ start /D "C:/" mongod --dbpath %MONGO_DB_PATH_MESSAGE% --port %MONGO_DB_PORT_MES
 if not exist %MONGO_DB_PATH_DOCUMENT% mkdir %MONGO_DB_PATH_DOCUMENT%
 start /D "C:/" mongod --dbpath %MONGO_DB_PATH_DOCUMENT% --port %MONGO_DB_PORT_DOCUMENT%
 
+
 :: support
+start /D "microservices/support/config-service" mvn spring-boot:run
 start /D "microservices/support/discovery-server" mvn spring-boot:run
 start /D "microservices/support/edge-server" mvn spring-boot:run
 start /D "microservices/support/dashboard-service" mvn spring-boot:run
