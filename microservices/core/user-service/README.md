@@ -238,3 +238,26 @@
 		</plugins>
 	</build>
 	```
+
+## Config Service verwenden
+
+- Maven Dependency einbinden  
+
+	```
+	  <!-- cloud config -->
+	               <dependency>
+	                       <groupId>org.springframework.cloud</groupId>
+	                       <artifactId>spring-cloud-starter-config</artifactId>
+	                       <version>1.0.1.RELEASE</version>
+	               </dependency>
+	               <!-- cloud config bus -->
+	               <dependency>
+	                       <groupId>org.springframework.cloud</groupId>
+	                       <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+	                       <version>1.0.0.RELEASE</version>
+	               </dependency>
+	```
+
+- AutoConfig aktivieren
+	- @EnableAutoConfiguration an Applications Klasse
+- Wichtig!!! Bevor die Konfiguration vom Config Service genommen werden kann, muss im Config Service ein Post auf /bus/refresh durchgeführt werden
