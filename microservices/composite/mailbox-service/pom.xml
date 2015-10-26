@@ -21,7 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-				<docker.image.prefix>t1m1</docker.image.prefix>
+		<docker.image.prefix>t1m1</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -95,6 +95,20 @@
 			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
 			<version>2.1.5</version>
 		</dependency>
+
+		<!-- cloud config -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+		<!-- cloud config bus -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

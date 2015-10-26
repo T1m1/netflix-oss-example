@@ -40,6 +40,19 @@
 			<version>1.0.0.RELEASE</version>
 		</dependency>
 
+		<!-- cloud config -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+		<!-- cloud config bus -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
