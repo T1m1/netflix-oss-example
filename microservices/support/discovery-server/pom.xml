@@ -38,7 +38,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-		</dependencies>
+
 
 		<!-- cloud config -->
 		<dependency>
@@ -52,6 +52,7 @@
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
+	</dependencies>
 	</dependencyManagement>
 
 	<build>
