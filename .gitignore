@@ -20,3 +20,5 @@ mvnw
 mvnw.cmd
 bin
 target
+
+**/bower_components
