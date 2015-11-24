@@ -18,12 +18,12 @@ mongo-message:
     - "1002:27017"
   restart: always
   
-mongo-document:
-  image: mongo:3.0
-  command: "--smallfiles"
-  ports:
-    - "1003:27017"
-  restart: always
+# mongo-document:
+#   image: mongo:3.0
+#  command: "--smallfiles"
+#  ports:
+#     - "1003:27017"
+#  restart: always
   
 user:
   image: t1m1/user
@@ -39,12 +39,12 @@ message:
     - mongo-message
     - discovery
 
-document:
-  image: t1m1/document
-  restart: always
-  links:
-    - mongo-document
-    - discovery
+#document:
+#  image: t1m1/document
+#  restart: always
+#  links:
+#    - mongo-document
+#    - discovery
 
 mailbox:
   image: t1m1/mailbox
@@ -75,3 +75,11 @@ web:
     - "8080:8080"
   links:
     - edge
+
+#config:
+#  image: t1m1/config-service
+#  restart: always
+#  ports:
+#    - "8888:8888"
+#  links:
+#    - discovery

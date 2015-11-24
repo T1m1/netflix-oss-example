@@ -1,6 +1,10 @@
 server:
   port: 0
 
+spring:
+  config:
+    enabled: false
+
 eureka:
   client:
     serviceUrl:

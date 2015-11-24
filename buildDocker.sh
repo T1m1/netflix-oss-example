@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+cd microservices/support/config-service;							mvn clean install package docker:build; cd - 
 cd microservices/core/user-service;                                         		mvn clean install package docker:build; cd -
 cd microservices/core/message-service;                                         		mvn clean install package docker:build; cd -
 cd microservices/core/document-service;                                 			mvn clean install package docker:build; cd -
