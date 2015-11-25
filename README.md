@@ -21,6 +21,7 @@
 
 ### Starten
 - Service-Landschaft mit Hilfe von ```startAll.bat``` starten
+- besser: docker-compose up
 
 
 ## Implementierungs-Schritte
