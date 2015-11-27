@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableZuulProxy
+@EnableDiscoveryClient 
 @EnableAutoConfiguration
 public class EdgeServerApplication {
 
