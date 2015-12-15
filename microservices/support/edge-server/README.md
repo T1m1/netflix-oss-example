@@ -45,6 +45,4 @@
         path: /test/**
   ```
   
-  [Weitere Einstellmöglichkeiten](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
-
-Darunter z.B. auch Hystrix Timeouts
+  [Weitere Einstellmöglichkeiten](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html) Darunter z.B. auch Hystrix Timeouts
