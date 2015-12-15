@@ -2,8 +2,8 @@
 
 Dashboard [lokal](http://localhost:8761/)
 
-[Was ist und was kann Eureka?](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance)
-[Server-Client-Kommunikation verstehen.](https://github.com/Netflix/eureka/wiki/Understanding-eureka-client-server-communication)
+- [Was ist und was kann Eureka?](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance)
+- [Server-Client-Kommunikation verstehen.](https://github.com/Netflix/eureka/wiki/Understanding-eureka-client-server-communication)
 
 ## Was ist zu beachten?
 
