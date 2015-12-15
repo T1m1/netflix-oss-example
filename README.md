@@ -1,5 +1,4 @@
-# Bachelor-Projekt
-
+# Netflix OSS Beispielanwendung
 
 
 ## System & Setup
