@@ -5,6 +5,14 @@
 
 [Was ist und was kann Zuul?](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html) 
 
+## Was ist zu beachten?
+- Der Aufruf einerr Anfrage ist gekapselt innerhalb eines hystrix Kommandos. Aus diesem Grund ist hier ebenfalls eine Anpassung notwendig, sollte das Timeout für Hystrix verändert werden wollen.
+- Dank der Möglichkeit Filter in verschiedenen "Lebenszyklen" einer Anfrage zu implementieren, ist Zuul sehr mächtig (Möglichkeit für Fehlerloggin, Metriken, statische Antworten, ...) 
+- Am Besten Zuul auf einem separaten Rechner laufen lassen. Falls ein Service auf dem Rechner viele Ressourcen benötigt, kann es dazu führen das Zuul nicht so viel Zeit zum Bearbeiten von Anfragen erhält und dann Anfragen aufgrund von Timeouts abbricht.
+
+## Offene Fragen
+- Stellt Zuul das Bottlnenck nach außen dar? Ist es möglich mehrere Zuul Instanzen laufen zu lassen? Wenn ja, wird dafür ein Extra Hardware Load Balancer benötigt oder kann das auch mit der Netflix OSS gelöst werden?
+
 ## Implementierung
 1. @EnableZuulProxy an die Spring-Boot Main Klasse
 2. Maven Dependencies hinzufgen *org.springframework.cloud-spring-cloud-starter-eureka* für die Registrierung am Eureka, *org.springframework.cloud-spring-cloud-starter-zuul* für die Funktionalität von Zuul und *org.springframework.boot-spring-boot-starter-web*
