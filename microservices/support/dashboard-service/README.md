@@ -1,16 +1,12 @@
 # Hystrix - Dashboard
 
-Um den Status der Circuit-Breaker in den Services (Mailbox-Service) zu erhalten, kann das Dashboard von Hystrix eingesetzt werden. 
+# Was gibts zu beachten?
 
-- Das Dashboard bietet Enwicklern oder anderen die Möglichkeit Statistiken, wie z.B. über erfolgreiche und fehlgeschlagene Anfragen, über die Circuits zu erhalten.
-- Des weiteren bietet Netflix ein weiteres Tool namens Turbine an. Turbine hilft mehrere Streams von Hystrix zu einem zu aggregieren. So muss nicht die ganze Zeit zwischen den instanzen der Services gewechselt werden.
-- Wenn ein Service ausfällt, öffnet sich der Circuit und das wird im Dashboard angezeigt. Je mehr Fehlschlagen desto roter wird die Anzeige
+- Wir das Tool [Turbine](https://github.com/Netflix/Turbine) von Netflix NICHT eingesetzt, kann nur ein einzige Circuit Breaker angezeigt und analysiert werden.
 
 
 
-
-
-## Implementierung - ohne Turbine
+## Implementierung - ohne Turbine (Zusätzlich ist Turbine zu installieren)
 
 1. Dependencies hinzufügen **org.springframework.cloud:spring-cloud-starter-hystrix-dashboard** 
 2. Um das Dashboard verwenden zu können muss die Annotation **@EnableHystrixDashboard** an die Applikationsklasse angehängt werden
