@@ -4,15 +4,10 @@ Dashboard [lokal](http://localhost:8761/)
 
 [Was ist und was kann Eureka?](https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance)
 [Server-Client-Kommunikation verstehen.](https://github.com/Netflix/eureka/wiki/Understanding-eureka-client-server-communication)
-- Clients:
-	- Name der Klients wird als  ```spring.application.name``` property in der bootstrap-Datei festgelegt
-	- ```org.springframework.cloud:spring-cloud-starter-eureka``` Dependency hinzufügen
-	- @EnableEurekaClient an die Klasse mit der main-Methode, damit sich der Client am Server anmeldet
 
 ## Was ist zu beachten?
-- Es kann belibeig viele Eureka-Server geben, die untereinander die infromation über ihre angemeldeten Clients tauschen.
-- Jedem Client muss eine oder mehrere Adressen mitgegeben werden, wo er sich anmelden kann.
-- 
+
+- Die Adresse vom Eureka ist hinter einem DNS Eintrag zu verstecken. So ist bei einer Änderunge der Adresse keine Anpassung in den Konfigurationsdateien der Services notwendig.
 
 ## Server Implementierung
 
@@ -49,6 +44,11 @@ Dashboard [lokal](http://localhost:8761/)
 		    server:
 		      waitTimeInMsWhenSyncEmpty: 0
 		```
+
+## Client implementierung
+	- Name der Klients wird als  ```spring.application.name``` property in der bootstrap-Datei festgelegt
+	- ```org.springframework.cloud:spring-cloud-starter-eureka``` Dependency hinzufügen
+	- @EnableEurekaClient an die Klasse mit der main-Methode, damit sich der Client am Server anmeldet
 
 ### Zwei oder mehrere Instanzen vom Eureka Server aufsetzen (& auf selber Lokalen Maschine laufen lassen)
 
