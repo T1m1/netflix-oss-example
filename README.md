@@ -18,9 +18,12 @@
 - 1 Eureka Server
 - 1 Edge Server (Zuul - Router, Ribbon - LoadBalancer)
 
-### Starten
+### Starten auf Windwos
 - Service-Landschaft mit Hilfe von ```startAll.bat``` starten
-- besser: docker-compose up
+
+### Starten mit Docker
+- Docker Images bauen: ```./buildDocker.sh```
+- Mit Hilfe von Docker-Compose starten: ```docker-compose up```
 
 
 ## Implementierungs-Schritte
