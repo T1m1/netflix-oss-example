@@ -3,31 +3,12 @@
 
 ## Zuul
 
-- Ist ein JVM basierter Router
-- Nach außen kann eine Website aussehen, als würde sie von einem einzigen Server angeboten werden.
-- Bestimmte URLs auf verschiedene Services
-- Server-Seitiges Load-Balancing
-- Zuul verwendet Ribbon !!!!
-- wird bei Netflix eingesetzt für:
-  - Authentication
-  - Stress-Tests 
-  - Canary Testing (Auslieferung von Features an eine bestimmte Gruppe von Usern)
-  - Dynamisches Routing
-  - Service Einbindung
-  - Last Ausgleich
-  - Security
-- Zuuls Regelwerk erlaubt Regeln und Filter in einer beliebigen JVM Sprache zu schreiben. Standardmäig wird Java und Groovy unterstützt.
-- Aktivierung mit @EnableZuulProxy an einer Spring-Boot Main Klasse
-- Laut Konvention, wird ein Service mit der EurekaID "users" Requests vom Proxy mit /users
-  - dies kann man in den Konfigurationen ändern
-- 
-
-
+[Was ist und was kann Zuul?](http://techblog.netflix.com/2013/06/announcing-zuul-edge-service-in-cloud.html) 
 
 ## Implementierung
 1. @EnableZuulProxy an die Spring-Boot Main Klasse
-2. Maven Dependencies hinzufgen *org.springframework.cloud-spring-cloud-starter-eureka*, *org.springframework.cloud-spring-cloud-starter-zuul*, *org.springframework.boot-spring-boot-starter-web*
-3. Namen für Anwendung vergeben in *bootstrap.yml*
+2. Maven Dependencies hinzufgen *org.springframework.cloud-spring-cloud-starter-eureka* für die Registrierung am Eureka, *org.springframework.cloud-spring-cloud-starter-zuul* für die Funktionalität von Zuul und *org.springframework.boot-spring-boot-starter-web*
+3. Namen für Anwendung vergeben in *bootstrap.yml* um ihn im Eureka Dashboard zu identifizieren. (Und damit andere ihn finden können)
   
   ```
   spring:
@@ -63,4 +44,7 @@
       product:
         path: /test/**
   ```
+  
+  [Weitere Einstellmöglichkeiten]{http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html}
 
+Darunter z.B. auch Hystrix Timeouts
