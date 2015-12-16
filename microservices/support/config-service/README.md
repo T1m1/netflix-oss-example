@@ -11,7 +11,7 @@
 - /{application}-{profile}.properties
 - /{label}/{application}-{profile}.properties
 
-
+## infos
 
 - Config Service läuft auf Port: 8888
 - Konfigurationsdateien updaten: POST http://config-server:8888/bus/refresh (Muss beim 1. starten durchgeführt werden)
