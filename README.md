@@ -39,5 +39,14 @@ Beispielprojekt zur Validierung der Netflix Open Source Software.
 - 1 Edge Server (Zuul - Router, Ribbon - LoadBalancer)
 
 
+### Nützliches
 
+#### Docker Kommandos
 
+- Alle Container stoppen: ```docker stop $(docker ps -a -q)```
+- Alle Images löschen: ```docker rmi -f $(docker images -q)```
+
+#### Docker-Compose Kommandos
+
+- Systemlandschaft starten: ```docker-compose up```
+- Container Skalieren: ```docker-compose scale name=NUMBEROFINSTANCES```
