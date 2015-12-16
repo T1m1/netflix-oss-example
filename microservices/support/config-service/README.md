@@ -2,7 +2,7 @@
 
 # How To
 
-- Konfigurationsdateien sind auf Github in folgendem Repo: [TODO]
+- Konfigurationsdateien sind auf Github in folgendem Repo: [Config-Repo](https://github.com/T1m1/config-repo)
 - Format:
 
 ----
