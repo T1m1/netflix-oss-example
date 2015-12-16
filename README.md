@@ -19,6 +19,7 @@ Beispielprojekt zur Validierung der Netflix Open Source Software.
 6. Circuit Breaker mit [Hystrix](https://github.com/T1m1/bachelor-project/tree/master/microservices/composite/mailbox-service#hystrix---circuit-breaker)
 7. Hystrix [Dashboard] (https://github.com/T1m1/bachelor-project/tree/master/microservices/support/dashboard-service) + [Turbine](https://github.com/T1m1/netflix-oss-example/tree/master/microservices/support/turbine) 
 8. [WebUI] (https://github.com/T1m1/bachelor-project/tree/master/web)
+9. [ConfigServer](https://github.com/T1m1/netflix-oss-example/tree/master/microservices/support/config-service)
 
 
 ### System & Setup
