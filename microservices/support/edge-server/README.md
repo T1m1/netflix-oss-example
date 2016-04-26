@@ -46,7 +46,7 @@
 - Bsp.: ignoriert alle bis auf den Service "product". Dieser steht unter dem pfad "/test/\*\*" zur Verfügung
 
   ```
-  zuul.
+  zuul:
     ignoredServices: "*"
     routes:
       product:
